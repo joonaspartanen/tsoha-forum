@@ -140,4 +140,8 @@ cython_debug/
 # Messages database
 messages.db
 
+# VS Code generated folder
 .vscode/
+
+# Textual representation of ER diagram
+erdiagram.txt
