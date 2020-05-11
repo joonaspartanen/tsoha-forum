@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <title>Message Forum</title>
     <script>
-      const handleLike = (messageId) => {
-        const likeLabel = document.querySelector(`#likes-label-${messageId}`)
-        fetch(`messages/${messageId}`, { method: 'POST' }).then((response) => {
+      const handleLike = (postId) => {
+        const likeLabel = document.querySelector(`#likes-label-${postId}`)
+        fetch(`posts/${postId}`, { method: 'POST' }).then((response) => {
           likeLabel.innerHTML = Number(likeLabel.innerHTML) + 1
         })
       }
@@ -16,8 +16,8 @@
   <body>
     <nav>
       <ul>
-        <li><a href="{{ url_for('messages_index') }}">Forum</a></li>
-        <li><a href="{{ url_for('messages_form') }}">New message</a></li>
+        <li><a href="{{ url_for('posts_index') }}">Forum</a></li>
+        <li><a href="{{ url_for('posts_form') }}">New post</a></li>
       </ul>
     </nav>
     {% block body %}
