@@ -3,6 +3,7 @@
 ## Tietokantakaavio
 
 Sovelluksen tietokannan suunniteltua rakennetta kuvaa seuraava kaavio:
+
 ![Tietokantakaavio](https://raw.githubusercontent.com/joonaspartanen/tsoha-forum/master/documentation/images/erdiagram.png)
 
 Sovelluksen keskeisiä käsitteitä ovat siis _User_ (käyttäjä), _Topic_ (viestiketju), _Post_ (viesti) ja _Tag_ (aihetunniste).
