@@ -3,14 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <title>Message Forum</title>
-    <script>
-      const handleLike = (postId) => {
-        const likeLabel = document.querySelector(`#likes-label-${postId}`)
-        fetch(`posts/${postId}`, { method: 'POST' }).then((response) => {
-          likeLabel.innerHTML = Number(likeLabel.innerHTML) + 1
-        })
-      }
-    </script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='main.js') }}"
+    ></script>
   </head>
 
   <body>
