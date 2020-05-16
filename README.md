@@ -2,7 +2,9 @@
 
 Tämä on repositorio Helsingin yliopiston kurssille [Aineopintojen harjoitustyö: tietokantasovellus](https://materiaalit.github.io/tsoha-20/).
 
-- [Arkkitehtuurikuvaus](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/architecture.md)
+- [Arkkitehtuurikuvaus ja tietokantakaavio](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/architecture.md)
+
+- [Vaatimusmäärittely ja yleisimmät käyttötapaukset](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/requirements.md)
 
 ## Yleistä
 
