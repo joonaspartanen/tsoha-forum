@@ -12,5 +12,7 @@ from application import views
 
 from application.posts import models
 from application.posts import views
+from application.topics import models
+from application.topics import views
 
 db.create_all()
