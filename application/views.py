@@ -3,4 +3,4 @@ from application import app
 
 @app.route("/")
 def index():
-    return redirect(url_for("posts_index"))
+    return redirect(url_for("topics_index"))
