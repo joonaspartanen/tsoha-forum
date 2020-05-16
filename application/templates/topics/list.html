@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block body %}
+
+<h1 class="ui header">Message Forum</h1>
+
+<div class="topic-list">
+  {% if topics|length == 0 %}
+  <div class="ui segment topic-wrapper">
+    There are no topics. Go ahead and <a href="{{ url_for('topics_form') }}">add one</a>!
+  </div>
+  {% else %}
+  {% for topic in topics %}
+  <div class="ui segment topic-wrapper">
+    <a href="{{ url_for('topic_view', topic_id=topic.id) }}">
+      <h3 class="ui header topic-subject">
+        {{ topic.subject }}
+      </h3>
+    </a>
+    <div class="timestamp">Posted: {{ topic.date_created }}</div>
+  </div>
+
+  {% endfor %} {% endif %}
+</div>
+
+{% endblock %}
