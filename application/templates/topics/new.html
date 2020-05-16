@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form class="ui form" method="POST" action="{{ url_for('topics_create') }}">
+    <div class="field">
+        <label>Subject</label>
+        <input type="text" name="subject">
+    </div>
+    <div class="field">
+        <textarea name="body"></textarea>
+    </div>
+    <button class="ui primary button" type="submit">Add new topic</button>
+</form>
+{% endblock %}
