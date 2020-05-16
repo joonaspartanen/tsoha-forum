@@ -1,8 +1,0 @@
-{% extends "layout.html" %}
-
-{% block body %}
-<form method="POST" action="{{ url_for('posts_create') }}">
-    <input type="text" name="body">
-    <input type="submit" value="Add new post">
-</form>
-{% endblock %}
