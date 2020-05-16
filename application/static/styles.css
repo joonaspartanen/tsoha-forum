@@ -1,0 +1,16 @@
+.page-container {
+  min-height: 100vh;
+}
+
+.topic-list {
+  margin-top: 1em;
+}
+
+.post-body {
+  margin-bottom: 1em;
+}
+
+.timestamp {
+  font-size: 0.7em;
+  margin-top: 1em;
+}
