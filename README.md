@@ -26,6 +26,11 @@ Kehityksen alkuvaiheessa sovellus hyödyntää SQLite-tietokannanhallintajärjes
 
 Sovellukseen voi tutustua myös [Herokussa](https://tsoha-forum-app.herokuapp.com/).
 
+Oma tunnus on hyvin helppo tehdä, mutta myös seuraavaa testitunnusta voi käyttää (jos tietokanta ei ole tyhjentynyt):
+
+- käyttäjätunnus: _testuser_
+- salasana: _testuser_
+
 ## Asennusohjeet
 
 Kloonaa ensin repositorio koneellesi ja siirry projektikansioon:
