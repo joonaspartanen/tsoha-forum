@@ -12,8 +12,11 @@ class Post(db.Model):
     body = db.Column(db.String(1000), nullable=False)
     likes = db.Column(db.Integer, default=0)
 
-    topic_id = db.Column(db.Integer, db.ForeignKey('topics.id'))
+    topic_id = db.Column(db.Integer, db.ForeignKey('topics.id'), nullable=False)
     topic = db.relationship('Topic', back_populates='posts')
+
+    author_id = db.Column(db.Integer, db.ForeignKey('accounts.id'), nullable=False)
+    author = db.relationship('User', back_populates='posts')
 
     def __init__(self, body):
         self.body = body
