@@ -1,0 +1,34 @@
+{% extends "layout.html" %} {% block body %} {% if error %}
+<div class="ui negative message">
+  {{ error }}
+</div>
+{% endif %}
+
+<div class="ui segment">
+  <form class="ui fluid form" method="POST" action="{{ url_for('auth_create') }}">
+    <div class="field">
+      <div class="ui left icon input">
+        {{ form.username(autofocus=true) }}
+        <i class="user icon"></i>
+        {% for error in form.username.errors %}
+        <div class="ui left pointing red basic label">
+          {{ error }}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui left icon input">
+        {{ form.password }}
+        <i class="lock icon"></i>
+        {% for error in form.password.errors %}
+        <div class="ui left pointing red basic label">
+          {{ error }}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <button class="ui teal button" type="submit">Sign up</button>
+  </form>
+</div>
+{% endblock %}
