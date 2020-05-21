@@ -1,14 +1,24 @@
-{% extends "layout.html" %}
-
-{% block body %}
+{% extends "layout.html" %} {% block body %}
 <form class="ui form" method="POST" action="{{ url_for('topics_create') }}">
-    <div class="field">
-        <label>Subject</label>
-        <input type="text" name="subject">
+  <div class="field">
+    {{ form.subject }}
+    {% for error in form.subject.errors %}
+    <div class="ui pointing red basic label">
+      {{ error }}
     </div>
-    <div class="field">
-        <textarea name="body"></textarea>
+    {% endfor %}
+  </div>
+  <div class="field">
+    {{ form.body }}
+    {% for error in form.body.errors %}
+    <div class="ui pointing red basic label">
+      {{ error }}
     </div>
-    <button class="ui primary button" type="submit">Add new topic</button>
+    {% endfor %}
+  </div>
+  <button class="ui teal icon button" type="submit">
+    <i class="pencil icon"></i>
+    Add new topic
+  </button>
 </form>
 {% endblock %}
