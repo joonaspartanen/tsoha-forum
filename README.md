@@ -12,11 +12,13 @@ Harjoitustyön aiheena on keskustelufoorumi. Rekisteröityneet käyttäjät voiv
 
 Viestiketjuja on mahdollista luokitella käyttämällä aihetunnisteita. Foorumin hakutoiminto mahdollistaa viestiketjujen hakemisen mm. aihetunnisteiden ja ketjujen otsikoiden perusteella.
 
+Hakutoiminnon lisäksi monimutkaisempia yhteenvetokyselyjä on tarkoitus hyödyntää käyttäjän omalla sivulla, jossa voitaisiin näyttää esim. tilastotietoja.
+
 Tarkoituksena on luoda sovellukseen myös admin-käyttäjän rooli: admin-käyttäjä voi myös poistaa foorumilta viestejä ja viestiketjuja.
 
 ## Teknologiat
 
-Sovellus on tehty Pythonin [Flask](https://flask.palletsprojects.com/en/1.1.x/)-kirjastolla. HTML-sivujen generointiin hyödynnetään ainakin [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)-kirjastoa. Ulkoasun tyylittelyyn käytetään jotain vielä määrittelemätöntä CSS-frameworkia.
+Sovellus on tehty Pythonin [Flask](https://flask.palletsprojects.com/en/1.1.x/)-kirjastolla. HTML-sivujen generointiin hyödynnetään ainakin [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)-kirjastoa. Ulkoasun tyylittelyyn käytetään [Semantic UI:ta](https://semantic-ui.com/).
 
 Kehityksen alkuvaiheessa sovellus hyödyntää SQLite-tietokannanhallintajärjestelmää.
 
