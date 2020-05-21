@@ -18,3 +18,44 @@ const handleLike = (postId) => {
     })
   }
 }
+
+const handleDeleteTopic = (topicId) => {
+  fetch(`/topics/${topicId}`, { method: 'DELETE' }).then((response) => {
+    if (response.ok) {
+      const topicWrapper = document.querySelector(`#topic-wrapper-${topicId}`)
+      topicWrapper.parentNode.removeChild(topicWrapper)
+    }
+  })
+}
+
+const handleEditTopic = (topicId) => {
+  const topicWrapper = document.querySelector(`#topic-wrapper-${topicId}`)
+  const topicSubject = topicWrapper.getElementsByTagName('h3')[0]
+  const topicSubjectText = topicSubject.getElementsByTagName('a')[0]
+  const input = document.createElement('input')
+  input.classList.add('topic-subject-input')
+  input.minLength = 1
+  input.maxLength = 100
+  topicSubject.replaceWith(input)
+  input.select()
+  input.value = topicSubjectText.innerHTML
+  input.addEventListener('keyup', (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault()
+      const newSubject = input.value
+      const data = { Subject: newSubject }
+      fetch(`/topics/${topicId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }).then((response) => {
+        if (response.ok) {
+          topicSubjectText.innerHTML = newSubject
+          input.replaceWith(topicSubject)
+        }
+      })
+    }
+  })
+}
