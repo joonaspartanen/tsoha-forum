@@ -1,24 +1,49 @@
 {% extends "layout.html" %} {% block body %}
 
-<h1 class="ui header">Message Forum</h1>
-
-<div class="topic-list">
-  {% if topics|length == 0 %}
-  <div class="ui segment topic-wrapper">
-    There are no topics. Go ahead and <a href="{{ url_for('topics_form') }}">add one</a>!
+<div class="content-wrapper">
+  <h1 class="ui header">Message Forum</h1>
+  <div class="ui comments topic-list">
+    {% if topics|length == 0 %}
+    <div class="ui segment no-topics-message">
+      There are no topics. Go ahead and <a href="{{ url_for('topics_form') }}">add one</a>!
+    </div>
+    {% else %} {% for topic in topics %}
+    <div class="comment topic-wrapper" id="topic-wrapper-{{topic.id}}">
+      <div class="topic-header-row">
+        <h3 class="topic-subject">
+          <a href="{{ url_for('topics_view', topic_id=topic.id) }}">{{ topic.subject }}</a>
+        </h3>
+        <i onclick="handleEditTopic('{{ topic.id }}')" class="pencil icon link edit-topic-icon"></i>
+        <i
+          onclick="handleDeleteTopic('{{topic.id}}')"
+          class="delete icon link delete-topic-icon"
+        ></i>
+      </div>
+      <a class="avatar">
+        <img src="https://semantic-ui.com/images/avatar/small/matt.jpg" />
+      </a>
+      <div class="content">
+        <a class="author">{{ topic.posts[0].author.username }}</a>
+        <div class="metadata">
+          <span class="date">{{ topic.date_created.strftime('%H:%M (%d %b %Y)') }}</span>
+        </div>
+        <div class="text">
+          {{ topic.posts[0].body }}
+        </div>
+        <div class="actions">
+          <div
+            class="ui label likes-label"
+            id="likes-label-{{topic.posts[0].id}}"
+            onclick="handleLike('{{topic.posts[0].id}}')"
+          >
+            <i class="heart icon link"></i
+            ><span id="likes-text-{{topic.posts[0].id}}">{{ topic.posts[0].likes }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %} {% endif %}
   </div>
-  {% else %}
-  {% for topic in topics %}
-  <div class="ui segment topic-wrapper">
-    <a href="{{ url_for('topic_view', topic_id=topic.id) }}">
-      <h3 class="ui header topic-subject">
-        {{ topic.subject }}
-      </h3>
-    </a>
-    <div class="timestamp">Posted: {{ topic.date_created }}</div>
-  </div>
-
-  {% endfor %} {% endif %}
 </div>
 
 {% endblock %}
