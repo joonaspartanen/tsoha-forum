@@ -50,3 +50,37 @@ def topics_create():
     db.session().commit()
 
     return redirect(url_for("topics_index"))
+
+
+@app.route("/topics/<topic_id>", methods=["DELETE"])
+@login_required
+def topics_delete(topic_id):
+    topic = Topic.query.get(topic_id)
+
+    if topic is None:
+        return redirect(url_for("topics_index"))
+
+    for post in topic.posts:
+        db.session().delete(post)
+
+    db.session().delete(topic)
+    db.session().commit()
+
+    resp = jsonify(success=True)
+    return resp
+
+
+@app.route("/topics/<topic_id>", methods=["PUT"])
+@login_required
+def topics_rename(topic_id):
+    topic = Topic.query.get(topic_id)
+
+    if topic is None:
+        return redirect(url_for("topics_index"))
+
+    json = request.get_json()
+    topic.subject = json["Subject"]
+    db.session().commit()
+
+    resp = jsonify(success=True)
+    return resp
