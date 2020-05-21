@@ -9,7 +9,7 @@ class Topic(db.Model):
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(
     ), onupdate=db.func.current_timestamp())
 
-    subject = db.Column(db.String(1000), nullable=False)
+    subject = db.Column(db.String(100), nullable=False)
 
     posts = db.relationship('Post', back_populates='topic')
 
