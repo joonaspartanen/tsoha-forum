@@ -34,10 +34,15 @@ def posts_create(topic_id):
 @login_required
 def posts_like(post_id):
     post = Post.query.get(post_id)
-    post.likes += 1
-    db.session().commit()
 
-    resp = jsonify(success=True)
+    if current_user not in post.likedByUsers:
+        post.likedByUsers.append(current_user)
+        db.session().commit()
+
+        resp = jsonify(success=True)
+        return resp
+
+    resp = jsonify(success=False)
     return resp
 
 
@@ -45,8 +50,13 @@ def posts_like(post_id):
 @login_required
 def posts_unlike(post_id):
     post = Post.query.get(post_id)
-    post.likes -= 1
-    db.session().commit()
 
-    resp = jsonify(success=True)
+    if current_user in post.likedByUsers:
+            post.likedByUsers.remove(current_user)
+            db.session().commit()
+
+            resp = jsonify(success=True)
+            return resp
+
+    resp = jsonify(success=False)
     return resp
