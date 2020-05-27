@@ -41,7 +41,8 @@ def topics_view(topic_id):
 @app.route("/topics/new")
 @login_required
 def topics_form():
-    return render_template("topics/new.html", form=TopicForm())
+    tags = Tag.query.all()
+    return render_template("topics/new.html", form=TopicForm(), tags=tags)
 
 
 @app.route("/topics", methods=["POST"])
