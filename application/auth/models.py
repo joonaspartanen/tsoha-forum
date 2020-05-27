@@ -10,12 +10,15 @@ class User(db.Model):
 
     username = db.Column(db.String(100), nullable=False)
     pw_hash = db.Column(db.String(144), nullable=False)
+    
+    isAdmin = db.Column(db.Boolean, nullable=False)
+    
+    posts = db.relationship("Post", backref="accounts", lazy=True)
 
-    posts = db.relationship("Post", backref='accounts', lazy=True)
-
-    def __init__(self, username, pw_hash):
+    def __init__(self, username, pw_hash, isAdmin):
         self.username = username
         self.pw_hash = pw_hash
+        self.isAdmin = isAdmin
 
     def get_id(self):
         return self.id
@@ -28,3 +31,4 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+
