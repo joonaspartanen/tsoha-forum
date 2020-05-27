@@ -2,8 +2,17 @@
   min-height: 100vh;
 }
 
+.ui.main.container {
+  padding-top: 1em !important;
+}
+
+.main-title {
+  padding: 0.5em 0em 0.5em 0em !important;
+  font-size: 300% !important;
+}
+
 .content-wrapper {
-  max-width: 800px !important;
+  max-width: 1200px !important;
 }
 
 .topic-list {
@@ -14,7 +23,7 @@
   padding: 0em 1em 1em 1em !important;
   border: 1px solid darkgrey !important;
   margin-bottom: 1em !important;
-  border-radius: 5px;
+  border-radius: 4px;
   width: 100% !important;
 }
 
@@ -29,6 +38,10 @@
 
 .topic-subject > a:hover {
   color: grey;
+}
+
+.author:hover {
+  color: grey !important;
 }
 
 .topic-subject-input {
@@ -48,6 +61,11 @@
 
 .no-topics-message {
   margin-top: 1em;
+}
+
+.topic-navigation {
+  display: flex;
+  justify-content: center;
 }
 
 .post-wrapper {
@@ -80,4 +98,8 @@ textarea {
   position: absolute !important;
   right: 1em;
   top: 1.2em;
+}
+
+.tag-list {
+  margin-bottom: 1em;
 }
