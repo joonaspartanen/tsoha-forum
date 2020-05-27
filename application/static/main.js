@@ -3,19 +3,31 @@ const handleLike = (postId) => {
   const likesLabel = document.querySelector(`#likes-label-${postId}`)
 
   if (!likesLabel.classList.contains('red')) {
-    fetch(`/posts/${postId}/likes`, { method: 'PUT' }).then((response) => {
-      if (response.ok) {
-        likesText.innerHTML = Number(likesText.innerHTML) + 1
-        likesLabel.classList.add('red')
-      }
+    fetch(`/posts/${postId}/likes`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+      },
     })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          likesText.innerHTML = Number(likesText.innerHTML) + 1
+          likesLabel.classList.add('red')
+        }
+      })
   } else {
-    fetch(`/posts/${postId}/likes`, { method: 'DELETE' }).then((response) => {
-      if (response.ok) {
-        likesText.innerHTML = Number(likesText.innerHTML) - 1
-        likesLabel.classList.remove('red')
-      }
+    fetch(`/posts/${postId}/likes`, {
+      method: 'DELETE',
+      headers: { Accept: 'application/json' },
     })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          likesText.innerHTML = Number(likesText.innerHTML) - 1
+          likesLabel.classList.remove('red')
+        }
+      })
   }
 }
 
