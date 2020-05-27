@@ -47,7 +47,7 @@ class Post(db.Model):
 
         response = []
         for row in result:
-            response.append({"id": row[0], "date_created": datetime.strptime(row[1], "%Y-%m-%d %H:%M:%S"), "date_modified": row[2], "body": row[3],
+            response.append({"id": row[0], "date_created": row[1], "date_modified": row[2], "body": row[3],
                              "likes": row[4], "topic_id": row[5], "author": {"id": row[6], "username": row[7]}, "preview": True})
 
         print("----------------------------")
