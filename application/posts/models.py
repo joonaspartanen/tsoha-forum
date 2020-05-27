@@ -34,3 +34,19 @@ class Post(db.Model):
 
     def __init__(self, body):
         self.body = body
+
+    @staticmethod
+    def find_most_liked_posts_today(amount=5):
+        stmt = text("SELECT Posts.id, Posts.date_created, Posts.date_modified, "
+        "Posts.body, COUNT(post_id) AS likes, Posts.topic_id, Posts.author_id, "
+        "Accounts.username FROM Post_likes JOIN Posts ON Posts.id = Post_likes.post_id "
+        "JOIN Accounts ON Posts.author_id = Accounts.id WHERE date(Posts.date_created) = date('now') "
+        "GROUP BY post_id ORDER BY likes DESC LIMIT :amount;").params(amount=amount)
+        result = db.engine.execute(stmt)
+
+        response = []
+        for row in result:
+            response.append({"id": row[0], "date_created": datetime.strptime(row[1], "%Y-%m-%d %H:%M:%S"), "date_modified": row[2], "body": row[3],
+                             "likes": row[4], "topic_id": row[5], "author": {"id": row[6], "username": row[7]}, "preview": True})
+
+        return response
