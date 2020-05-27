@@ -31,6 +31,11 @@ Oma tunnus on hyvin helppo tehdä, mutta myös seuraavaa testitunnusta voi käyt
 - käyttäjätunnus: _testuser_
 - salasana: _testuser_
 
+Kehitysvaiheessa sovellus luo myös automaattisesti admin-käyttäjän, joka pystyy mm. muokkaamaan ja poistamaan viestejä:
+
+- käyttäjätunnus: _testadmin_
+- salasana: _testadmin_
+
 ## Asennusohjeet
 
 Kloonaa ensin repositorio koneellesi ja siirry projektikansioon:
