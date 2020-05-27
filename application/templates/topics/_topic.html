@@ -1,0 +1,30 @@
+<div class="comment topic-wrapper" id="topic-wrapper-{{topic.id}}">
+  <div class="topic-header-row">
+    <h3 class="topic-subject">
+      <a href="{{ url_for('topics_view', topic_id=topic.id) }}">{{ topic.subject }}</a>
+    </h3>
+    {% if current_user.isAdmin or topic.posts[0].author == current_user %}
+    <div class="toolbar">
+      <i onclick="handleEditTopic('{{ topic.id }}')" class="pencil icon link edit-topic-icon"></i>
+      <i onclick="handleDeleteTopic('{{topic.id}}')" class="delete icon link delete-topic-icon"></i>
+    </div>
+    {% endif %}
+  </div>
+  <a class="avatar">
+    <img src="../../static/images/avatar.png" />
+  </a>
+  <div class="content">
+    <a class="author">{{ topic.posts[0].author.username }}</a>
+    <div class="metadata">
+      <span class="date">{{ moment(topic.date_created).fromNow() }}</span>
+    </div>
+    <div class="text">
+      {{ topic.posts[0].body }}
+    </div>
+    <div class="actions">
+      {% for tag in topic.tags %}
+      <div class="ui tiny label">{{ tag.name }}</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
