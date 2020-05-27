@@ -4,25 +4,7 @@
   <h2 class="ui dividing header">{{ topic.subject }}</h2>
   <div class="ui comments topic-list">
     {% for post in topic.posts %}
-    <div class="comment post-wrapper">
-      <a class="avatar">
-        <img src="../../static/images/avatar.png" />
-      </a>
-      <div class="content">
-        <a class="author">{{ post.author.username }}</a>
-        <div class="metadata">
-          <span class="date">{{ post.date_created.strftime('%H:%M (%d %b %Y)') }}</span>
-        </div>
-        <div class="text">
-          {{ post.body }}
-        </div>
-        <div class="actions">
-          <div class="ui label likes-label" id="likes-label-{{post.id}}" onclick="handleLike('{{post.id}}')">
-            <i class="heart icon"></i><span id="likes-text-{{post.id}}">{{ post.likes }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+      {% include "posts/_post.html" %}
     {% endfor %}
 
     <form
