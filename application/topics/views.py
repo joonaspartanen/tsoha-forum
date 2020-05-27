@@ -50,6 +50,8 @@ def topics_form():
 def topics_create():
     form = TopicForm(request.form)
 
+    form.tags.choices = [form.tags.data]
+
     if not form.validate():
         return render_template("topics/new.html", form=form)
 
@@ -60,6 +62,13 @@ def topics_create():
     initial_post.author_id = current_user.id
     topic = Topic(subject)
     topic.posts.append(initial_post)
+
+    tag_names = form.tags.data[0].split(",")
+    for tag_name in tag_names:
+        tag = Tag.query.filter_by(name=tag_name).first()
+        if not tag:
+            tag = Tag(tag_name)
+        topic.tags.append(tag)
 
     db.session().add(topic)
     db.session().commit()
