@@ -56,7 +56,7 @@ def auth_create():
 
     pw_hash = bcrypt.generate_password_hash(form.password.data).decode("utf-8")
 
-    new_user = User(username, pw_hash, True)
+    new_user = User(username, pw_hash, False)
 
     db.session().add(new_user)
     db.session().commit()
