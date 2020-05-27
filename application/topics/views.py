@@ -1,16 +1,30 @@
 from application import app, db
 from flask import jsonify, redirect, render_template, request, url_for
 from flask_login import login_required, current_user
+from sqlalchemy import desc
 from application.topics.models import Topic
 from application.topics.forms import TopicForm
 from application.posts.models import Post
 from application.posts.forms import PostForm
+from application.tags.models import Tag
 
 
 @app.route("/topics", methods=["GET"])
 @login_required
 def topics_index():
-    return render_template("topics/list.html", topics=Topic.query.all())
+    page = request.args.get("page", 1, type=int)
+    topics = Topic.query.order_by(
+        desc(Topic.date_created)).paginate(page, 5, False)
+
+    next_url = None
+    prev_url = None
+    if topics.has_next:
+        next_url = url_for('topics_index', page=topics.next_num)
+    if topics.has_prev:
+        prev_url = url_for('topics_index', page=topics.prev_num)
+
+    most_liked_posts = Post.find_most_liked_posts_today(5)
+    return render_template("topics/list.html", topics=topics.items, most_liked_posts=most_liked_posts, next_url=next_url, prev_url=prev_url)
 
 
 @app.route("/topics/<topic_id>", methods=["GET"])
