@@ -23,7 +23,7 @@ def topics_index():
     if topics.has_prev:
         prev_url = url_for('topics_index', page=topics.prev_num)
 
-    most_liked_posts = Post.find_most_liked_posts_today(5)
+    most_liked_posts = []
     return render_template("topics/list.html", topics=topics.items, most_liked_posts=most_liked_posts, next_url=next_url, prev_url=prev_url)
 
 
