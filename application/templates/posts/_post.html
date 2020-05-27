@@ -1,0 +1,34 @@
+<div class="comment post-wrapper">
+  <a class="avatar">
+    <img src="../../static/images/avatar.png" />
+  </a>
+  <div class="content">
+    <a class="author">{{ post.author.username }}</a>
+    <div class="metadata">
+      <span class="date">{{ moment(post.date_created).fromNow() }}</span>
+    </div>
+    
+    {% if post.preview %}
+    <div class="text">
+      {{ post.body|truncate(100, False) }}
+    </div>
+    {% else %}
+    <div class="text">
+      {{ post.body }}
+    </div>
+    {% endif %}
+    
+    {% if not post.preview %}
+    <div class="actions">
+      <div
+        class="ui label tiny likes-label {{'red' if current_user in post.likedByUsers }}"
+        id="likes-label-{{post.id}}"
+        onclick="handleLike('{{post.id}}')"
+      >
+        <i class="heart icon"></i>
+        <span id="likes-text-{{post.id}}">{{ post.likedByUsers|length }}</span>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
