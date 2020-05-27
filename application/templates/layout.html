@@ -4,19 +4,24 @@
     <meta charset="utf-8" />
     <title>Message Forum</title>
     <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
     />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    {{ moment.include_moment() }}
   </head>
 
   <body>
     <div class="page-container">
-      <div class="ui menu">
+      <div class="ui inverted teal menu">
         <a class="item" href="{{ url_for('topics_index') }}">All topics</a>
         <a class="item" href="{{ url_for('topics_form') }}">Add new topic</a>
         <a class="item" href="#">Search topics (upcoming)</a>
@@ -27,13 +32,9 @@
         <a class="item" href="{{ url_for('auth_login_form') }}">Login</a>
         {% endif %}
       </div>
-
-      <div class="ui container" style="padding-top: 1em;">
-        {% block body %}
-        <p>
-          Content.
-        </p>
-        {% endblock %}
+      <h1 class="ui header centered teal main-title">Message Forum</h1>
+      <div class="ui main container">
+        {% block body %} {% endblock %}
       </div>
     </div>
     <div class="ui secondary menu footer">
