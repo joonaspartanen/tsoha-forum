@@ -1,5 +1,6 @@
 from application import db
 from datetime import datetime
+import os
 
 from sqlalchemy.sql import text
 
@@ -46,10 +47,14 @@ class Post(db.Model):
         result = db.engine.execute(stmt)
 
         response = []
-        for row in result:
-            response.append({"id": row[0], "date_created": row[1], "date_modified": row[2], "body": row[3],
-                             "likes": row[4], "topic_id": row[5], "author": {"id": row[6], "username": row[7]}, "preview": True})
 
-        print("----------------------------")
-        print(response)
+        if os.environ.get("HEROKU"):
+            for row in result:
+                response.append({"id": row[0], "date_created": row[1], "date_modified": row[2], "body": row[3],
+                                 "likes": row[4], "topic_id": row[5], "author": {"id": row[6], "username": row[7]}, "preview": True})
+        else:
+            for row in result:
+                response.append({"id": row[0], "date_created": datetime.strptime(row[1], "%Y-%m-%d %H:%M:%S"), "date_modified": row[2], "body": row[3],
+                                 "likes": row[4], "topic_id": row[5], "author": {"id": row[6], "username": row[7]}, "preview": True})
+
         return response
