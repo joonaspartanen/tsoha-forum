@@ -20,7 +20,6 @@ class Post(db.Model):
                               onupdate=db.func.current_timestamp())
 
     body = db.Column(db.String(1000), nullable=False)
-    likes = db.Column(db.Integer, default=0)
 
     likedByUsers = db.relationship("User", secondary=post_likes)
 
@@ -38,10 +37,12 @@ class Post(db.Model):
     @staticmethod
     def find_most_liked_posts_today(amount=5):
         stmt = text("SELECT Posts.id, Posts.date_created, Posts.date_modified, "
-        "Posts.body, COUNT(post_id) AS likes, Posts.topic_id, Posts.author_id, "
-        "Accounts.username FROM Post_likes JOIN Posts ON Posts.id = Post_likes.post_id "
-        "JOIN Accounts ON Posts.author_id = Accounts.id WHERE date(Posts.date_created) = date('now') "
-        "GROUP BY post_id ORDER BY likes DESC LIMIT :amount;").params(amount=amount)
+                    "Posts.body, Post_likes.likes, Posts.topic_id, Posts.author_id, "
+                    "Accounts.username from Posts JOIN (SELECT post_id, COUNT(post_id) AS likes "
+                    "FROM Post_likes GROUP BY post_id ORDER BY likes DESC LIMIT :amount) AS Post_likes "
+                    "ON Posts.id = Post_likes.post_id JOIN Accounts ON Posts.author_id = Accounts.id "
+                    "WHERE date(Posts.date_created) = date('now');").params(amount=amount)
+
         result = db.engine.execute(stmt)
 
         response = []
@@ -49,4 +50,6 @@ class Post(db.Model):
             response.append({"id": row[0], "date_created": datetime.strptime(row[1], "%Y-%m-%d %H:%M:%S"), "date_modified": row[2], "body": row[3],
                              "likes": row[4], "topic_id": row[5], "author": {"id": row[6], "username": row[7]}, "preview": True})
 
+        print("----------------------------")
+        print(response)
         return response
