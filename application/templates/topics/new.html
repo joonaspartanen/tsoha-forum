@@ -1,24 +1,44 @@
 {% extends "layout.html" %} {% block body %}
-<form class="ui form" method="POST" action="{{ url_for('topics_create') }}">
+<form
+  class="ui form"
+  method="POST"
+  action="{{ url_for('topics_create') }}"
+  onkeydown="return event.key != 'Enter'"
+>
   <div class="field">
-    {{ form.subject }}
-    {% for error in form.subject.errors %}
+    {{ form.subject }} {% for error in form.subject.errors %}
     <div class="ui pointing red basic label">
       {{ error }}
     </div>
     {% endfor %}
   </div>
   <div class="field">
-    {{ form.body }}
-    {% for error in form.body.errors %}
+    {{ form.body }} {% for error in form.body.errors %}
     <div class="ui pointing red basic label">
       {{ error }}
     </div>
     {% endfor %}
+  </div>
+  <div class="ui fluid multiple search normal selection dropdown tag-list">
+    <input type="hidden" name="tags" />
+    <div class="default text">Select up to 3 tags</div>
+    <div class="menu">
+      {% for tag in tags %}
+      <div class="item" data-value="{{ tag.name }}">{{ tag.name }}</div>
+      {% endfor %}
+    </div>
   </div>
   <button class="ui teal icon button" type="submit">
     <i class="pencil icon"></i>
     Add new topic
   </button>
 </form>
+
+<script>
+  $('.ui.dropdown').dropdown({
+    maxSelections: 3,
+    allowAdditions: true,
+  })
+</script>
+
 {% endblock %}
