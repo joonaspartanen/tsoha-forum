@@ -10,7 +10,6 @@ bcrypt = Bcrypt(app)
 
 @app.route("/auth/login", methods=["GET"])
 def auth_login_form():    
-    create_admin_user()
     return render_template("auth/login.html", form=UserForm())
 
 
@@ -57,7 +56,7 @@ def auth_create():
 
     pw_hash = bcrypt.generate_password_hash(form.password.data).decode("utf-8")
 
-    new_user = User(username, pw_hash, False)
+    new_user = User(username, pw_hash, True)
 
     db.session().add(new_user)
     db.session().commit()
@@ -70,12 +69,3 @@ def auth_logout():
     logout_user()
     return redirect(url_for("auth_login"))
 
-# Creates an admin user account for development purposes
-def create_admin_user():
-    admin_user = User.query.filter_by(username="admin").first()
-    if not admin_user:
-        pw_hash = bcrypt.generate_password_hash("admin").decode("utf-8")
-        admin_user = User("admin", pw_hash, True)
-
-        db.session().add(admin_user)
-        db.session().commit()
