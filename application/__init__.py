@@ -24,6 +24,9 @@ from application.topics import views
 from application.auth import models
 from application.auth import views
 
+from flask_moment import Moment
+moment = Moment(app)
+
 from application.auth.models import User
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
