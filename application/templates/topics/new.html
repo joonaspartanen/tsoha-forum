@@ -6,18 +6,24 @@
   onkeydown="return event.key != 'Enter'"
 >
   <div class="field">
-    {{ form.subject }} {% for error in form.subject.errors %}
+    {{ form.subject }}
+    
+    {% for error in form.subject.errors %}
     <div class="ui pointing red basic label">
       {{ error }}
     </div>
     {% endfor %}
+
   </div>
   <div class="field">
-    {{ form.body }} {% for error in form.body.errors %}
+    {{ form.body }} 
+    
+    {% for error in form.body.errors %}
     <div class="ui pointing red basic label">
       {{ error }}
     </div>
     {% endfor %}
+
   </div>
   <div class="ui fluid multiple search normal selection dropdown tag-list">
     <input type="hidden" name="tags" />
@@ -32,6 +38,12 @@
     <i class="pencil icon"></i>
     Add new topic
   </button>
+
+  {% for error in form.tags.errors %}
+  <div class="ui pointing red basic label">
+    {{ error }}
+  </div>
+  {% endfor %}
 </form>
 
 <script>
