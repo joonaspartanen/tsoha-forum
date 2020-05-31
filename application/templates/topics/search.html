@@ -1,0 +1,25 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="ui negative message">
+  <i class="close icon"></i>
+  <div class="header">
+    Unimplemented feature!
+  </div>
+</div>
+
+<form class="ui form" method="POST" action="{{ url_for('search_topics') }}">
+  <div class="field">
+    <label>Subject</label>
+    <input type="text" name="subject" />
+  </div>
+  <div class="field">
+    <label>Tag</label>
+    <input type="text" name="tag" />
+  </div>
+  <button class="ui teal icon button" type="submit">
+    <i class="search icon"></i>
+    Search
+  </button>
+</form>
+
+{% endblock %}
