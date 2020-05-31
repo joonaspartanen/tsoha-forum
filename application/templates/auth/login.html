@@ -1,5 +1,10 @@
-{% extends "layout.html" %} {% block body %} {% if error %}
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% if error %}
 <div class="ui negative message">
+  <i class="close icon"></i>
   {{ error }}
 </div>
 {% endif %}
