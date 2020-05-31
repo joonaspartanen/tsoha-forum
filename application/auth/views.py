@@ -1,15 +1,16 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 
 from application import app, db
 from application.auth.models import User
-from application.auth.forms import UserForm
+from application.auth.forms import UserForm, EditProfileForm
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
 
 @app.route("/auth/login", methods=["GET"])
-def auth_login_form():    
+def auth_login_form():
+    create_testadmin_if_absent()
     return render_template("auth/login.html", form=UserForm())
 
 
@@ -64,8 +65,57 @@ def auth_create():
     return redirect(url_for("auth_login"))
 
 
-@app.route("/auth/logout")
+@app.route("/auth/logout", methods=["POST"])
 def auth_logout():
     logout_user()
     return redirect(url_for("auth_login"))
 
+
+@app.route("/auth/users/<user_id>", methods=["GET"])
+@login_required
+def show_user_page(user_id):
+
+    user = User.get_user_with_statistics(user_id)
+
+    if not user:
+        redirect(url_for("topics_index"))
+
+    return render_template("auth/user_page.html", user=user)
+
+
+@app.route("/auth/users/<user_id>/edit", methods=["GET"])
+@login_required
+def show_edit_profile(user_id):
+    return render_template("auth/edit_profile.html", form=EditProfileForm())
+
+
+@app.route("/auth/users/<user_id>/edit", methods=["POST"])
+@login_required
+def edit_profile(user_id):
+    form = EditProfileForm(request.form)
+
+    if not form.validate():
+        return render_template("auth/edit_profile.html", form=form)
+
+    user = User.query.filter_by(id=user_id).first()
+
+    if not user:
+        redirect(url_for("topics_index"))
+
+    user.description = form.description.data
+    db.session().commit()
+
+    return redirect(url_for("show_user_page", user_id=user_id))
+
+
+def create_testadmin_if_absent():
+    testadmin = User.query.filter_by(username="tsohaadmin").first()
+    if testadmin:
+        return
+
+    pw_hash = bcrypt.generate_password_hash("tsohaadmin").decode("utf-8")
+
+    testadmin = User("tsohaadmin", pw_hash, True)
+
+    db.session().add(testadmin)
+    db.session().commit()
