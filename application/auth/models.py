@@ -1,5 +1,5 @@
 from application import db
-from application.utils.helper import Time_formatter
+from application.utils.helper import TimeFormatter
 
 from sqlalchemy.sql import text
 
@@ -50,5 +50,5 @@ class User(db.Model):
         mapped_row = [0 if item is None else item for item in row]
 
         return {"id": mapped_row[0], "username": mapped_row[1], "description": mapped_row[2],
-                "is_admin": mapped_row[3], "date_created": Time_formatter.get_timestamp(mapped_row[4]),
+                "is_admin": mapped_row[3], "date_created": TimeFormatter.get_timestamp(mapped_row[4]),
                 "likes": mapped_row[5], "posts_amount": mapped_row[6]}

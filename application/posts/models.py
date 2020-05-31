@@ -1,5 +1,5 @@
 from application import db
-from application.utils.helper import Time_formatter
+from application.utils.helper import TimeFormatter
 
 from sqlalchemy.sql import text
 
@@ -48,7 +48,7 @@ class Post(db.Model):
         response = []
 
         for row in result:
-            response.append({"id": row[0], "date_created": Time_formatter.get_timestamp(row[1]), "date_modified": Time_formatter.get_timestamp(row[2]), "body": row[3],
+            response.append({"id": row[0], "date_created": TimeFormatter.get_timestamp(row[1]), "date_modified": TimeFormatter.get_timestamp(row[2]), "body": row[3],
                              "likes": row[4], "topic_id": row[5], "author": {"id": row[6], "username": row[7]}, "preview": True})
 
         return response

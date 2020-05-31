@@ -2,7 +2,7 @@ from datetime import datetime
 import os
 
 
-class Time_formatter:
+class TimeFormatter:
 
  @staticmethod
  def get_timestamp(timestamp):
