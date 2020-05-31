@@ -1,3 +1,7 @@
+const logout = () => {
+  document.getElementById('logout-form').submit()
+}
+
 const handleLike = (postId) => {
   const likesText = document.querySelector(`#likes-text-${postId}`)
   const likesLabel = document.querySelector(`#likes-label-${postId}`)
