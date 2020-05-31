@@ -1,0 +1,75 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="ui two column middle aligned stackable grid">
+  <div class="column">
+    <div class="ui centered card">
+      <div class="image">
+        <img src="../../static/images/avatar.png" alt="User avatar"/>
+      </div>
+      <div class="content">
+        <a class="header">{{ user.username }}</a>
+        <div class="meta">
+          <span class="date">Joined on {{ moment(user.date_created).format("LL") }}</span>
+        </div>
+        <div class="description">
+          {% if not user.description %}
+          This user has no description.
+          {% else %}
+          {{ user.description }}
+          {% endif %}
+        </div>
+      </div>
+      <div class="extra content">
+        {% if user.is_admin %}
+        <div class="ui tiny label">
+          Admin
+        </div>
+        {% endif %}
+      </div>
+      {% if user.id == current_user.id %}
+      <a class="ui teal button" href="{{ url_for('show_edit_profile', user_id=user.id) }}">
+        <i class="pencil icon"></i>
+        Edit profile
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui two statistics">
+      <div class="statistic">
+        <div class="value">
+          XX
+        </div>
+        <div class="label">
+          Topics
+        </div>
+      </div>
+      <div class="statistic">
+        <div class="value">
+          {{ user.posts_amount }}
+        </div>
+        <div class="label">
+          Posts
+        </div>
+      </div>
+      <div class="statistic">
+        <div class="value">
+            {{ user.likes }}
+        </div>
+        <div class="label">
+          Likes
+        </div>
+      </div>
+      <div class="ui statistic">
+        <div class="value">
+          {{ moment(user.date_created).format("MM/YY") }}
+        </div>
+        <div class="label">
+          Member since
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
