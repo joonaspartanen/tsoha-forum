@@ -27,7 +27,7 @@
         {% endif %}
       </div>
       {% if user.id == current_user.id %}
-      <a class="ui teal button" href="{{ url_for('show_edit_profile', user_id=user.id) }}">
+      <a class="ui teal button" href="{{ url_for('view_edit_profile', user_id=user.id) }}">
         <i class="pencil icon"></i>
         Edit profile
       </a>

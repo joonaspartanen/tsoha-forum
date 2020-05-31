@@ -9,7 +9,7 @@ bcrypt = Bcrypt(app)
 
 
 @app.route("/auth/login", methods=["GET"])
-def auth_login_form():
+def view_login_form():
     create_testadmin_if_absent()
     return render_template("auth/login.html", form=UserForm())
 
@@ -36,14 +36,14 @@ def auth_login():
 
 
 @app.route("/auth/signup", methods=["GET"])
-def auth_signup_form():
+def view_signup_form():
     form = UserForm()
 
     return render_template("auth/signup.html", form=form)
 
 
 @app.route("/auth/users", methods=["POST"])
-def auth_create():
+def create_user():
     form = UserForm(request.form)
 
     if not form.validate():
@@ -73,7 +73,7 @@ def auth_logout():
 
 @app.route("/auth/users/<user_id>", methods=["GET"])
 @login_required
-def show_user_page(user_id):
+def view_user_page(user_id):
 
     user = User.get_user_with_statistics(user_id)
 
@@ -85,7 +85,7 @@ def show_user_page(user_id):
 
 @app.route("/auth/users/<user_id>/edit", methods=["GET"])
 @login_required
-def show_edit_profile(user_id):
+def view_edit_profile(user_id):
     return render_template("auth/edit_profile.html", form=EditProfileForm())
 
 
@@ -105,7 +105,7 @@ def edit_profile(user_id):
     user.description = form.description.data
     db.session().commit()
 
-    return redirect(url_for("show_user_page", user_id=user_id))
+    return redirect(url_for("view_user_page", user_id=user_id))
 
 
 def create_testadmin_if_absent():

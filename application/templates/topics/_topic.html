@@ -22,7 +22,7 @@
     <img src="../../static/images/avatar.png" alt="User avatar" />
   </a>
   <div class="content">
-    <a class="author" href="{{ url_for('show_user_page', user_id=topic.posts[0].author.id) }}">
+    <a class="author" href="{{ url_for('view_user_page', user_id=topic.posts[0].author.id) }}">
       {{ topic.posts[0].author.username }}
     </a>
     <div class="metadata">

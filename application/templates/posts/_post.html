@@ -3,7 +3,7 @@
     <img src="../../static/images/avatar.png" alt="User avatar"/>
   </a>
   <div class="content">
-    <a class="author" href="{{ url_for('show_user_page', user_id=post.author.id) }}">{{ post.author.username }}</a>
+    <a class="author" href="{{ url_for('view_user_page', user_id=post.author.id) }}">{{ post.author.username }}</a>
     <div class="metadata">
       <span class="date">{{ moment(post.date_created).fromNow() }}</span>
     </div>
