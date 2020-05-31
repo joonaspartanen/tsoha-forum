@@ -28,13 +28,13 @@ Sovellukseen voi tutustua myös [Herokussa](https://tsoha-forum-app.herokuapp.co
 
 Oma tunnus on hyvin helppo tehdä, mutta myös seuraavaa testitunnusta voi käyttää (jos tietokanta ei ole tyhjentynyt):
 
-- käyttäjätunnus: _testuser_
-- salasana: _testuser_
+- käyttäjätunnus: _tsohauser_
+- salasana: _tsohauser_
 
 Kehitysvaiheessa sovellus luo myös automaattisesti admin-käyttäjän, joka pystyy mm. muokkaamaan ja poistamaan viestejä:
 
-- käyttäjätunnus: _testadmin_
-- salasana: _testadmin_
+- käyttäjätunnus: _tsohaadmin_
+- salasana: _tsohaadmin_
 
 ## Asennusohjeet
 
