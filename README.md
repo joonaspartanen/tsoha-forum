@@ -31,7 +31,7 @@ Oma tunnus on hyvin helppo tehdä, mutta myös seuraavaa testitunnusta voi käyt
 - käyttäjätunnus: _tsohauser_
 - salasana: _tsohauser_
 
-Kehitysvaiheessa sovellus luo myös automaattisesti admin-käyttäjän, joka pystyy mm. muokkaamaan ja poistamaan viestejä:
+Kehitysvaiheessa sovellus luo automaattisesti admin-käyttäjän, joka pystyy mm. muokkaamaan ja poistamaan viestejä:
 
 - käyttäjätunnus: _tsohaadmin_
 - salasana: _tsohaadmin_
