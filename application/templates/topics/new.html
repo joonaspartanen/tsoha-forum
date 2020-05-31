@@ -1,8 +1,11 @@
-{% extends "layout.html" %} {% block body %}
+{% extends "layout.html" %}
+
+{% block body %}
+
 <form
   class="ui form"
   method="POST"
-  action="{{ url_for('topics_create') }}"
+  action="{{ url_for('create_topic') }}"
   onkeydown="return event.key != 'Enter'"
 >
   <div class="field">
