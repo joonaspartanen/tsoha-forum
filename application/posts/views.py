@@ -8,7 +8,7 @@ from application.topics.models import Topic
 
 @app.route("/topics/<topic_id>/posts", methods=["POST"])
 @login_required
-def posts_create(topic_id):
+def create_post(topic_id):
     topic = Topic.query.get(topic_id)
 
     if topic is None:
@@ -27,12 +27,12 @@ def posts_create(topic_id):
     db.session().add(post)
     db.session().commit()
 
-    return redirect(url_for("topics_view", topic_id=topic_id))
+    return redirect(url_for("view_topic", topic_id=topic_id))
 
 
 @app.route("/posts/<post_id>/likes", methods=["PUT"])
 @login_required
-def posts_like(post_id):
+def like_post(post_id):
     post = Post.query.get(post_id)
 
     if current_user not in post.likedByUsers:
@@ -48,7 +48,7 @@ def posts_like(post_id):
 
 @app.route("/posts/<post_id>/likes", methods=["DELETE"])
 @login_required
-def posts_unlike(post_id):
+def unlike_post(post_id):
     post = Post.query.get(post_id)
 
     if current_user in post.likedByUsers:
