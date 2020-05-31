@@ -29,7 +29,7 @@ def topics_index():
 
 @app.route("/topics/<topic_id>", methods=["GET"])
 @login_required
-def topics_view(topic_id):
+def view_topic(topic_id):
     topic = Topic.query.get(topic_id)
 
     if topic is None:
@@ -40,14 +40,14 @@ def topics_view(topic_id):
 
 @app.route("/topics/new")
 @login_required
-def topics_form():
+def view_new_topic_form():
     tags = Tag.query.all()
     return render_template("topics/new.html", form=TopicForm(), tags=tags)
 
 
 @app.route("/topics", methods=["POST"])
 @login_required
-def topics_create():
+def create_topic():
     form = TopicForm(request.form)
 
     form.tags.choices = [form.tags.data]
@@ -78,7 +78,7 @@ def topics_create():
 
 @app.route("/topics/<topic_id>", methods=["DELETE"])
 @login_required
-def topics_delete(topic_id):
+def delete_topic(topic_id):
     topic = Topic.query.get(topic_id)
 
     if topic is None:
@@ -96,7 +96,7 @@ def topics_delete(topic_id):
 
 @app.route("/topics/<topic_id>", methods=["PUT"])
 @login_required
-def topics_rename(topic_id):
+def rename_topic(topic_id):
     topic = Topic.query.get(topic_id)
 
     if topic is None:
@@ -108,3 +108,13 @@ def topics_rename(topic_id):
 
     resp = jsonify(success=True)
     return resp
+
+@app.route("/topics/search", methods=["GET"])
+@login_required
+def view_search_form():
+    return render_template("topics/search.html")
+
+@app.route("/topics/search", methods=["POST"])
+@login_required
+def search_topics():
+    return redirect(url_for("topics_index"))
