@@ -1,9 +1,9 @@
 <div class="comment post-wrapper">
   <a class="avatar">
-    <img src="../../static/images/avatar.png" />
+    <img src="../../static/images/avatar.png" alt="User avatar"/>
   </a>
   <div class="content">
-    <a class="author">{{ post.author.username }}</a>
+    <a class="author" href="{{ url_for('show_user_page', user_id=post.author.id) }}">{{ post.author.username }}</a>
     <div class="metadata">
       <span class="date">{{ moment(post.date_created).fromNow() }}</span>
     </div>
@@ -21,12 +21,12 @@
     {% if not post.preview %}
     <div class="actions">
       <div
-        class="ui label tiny likes-label {{'red' if current_user in post.likedByUsers }}"
-        id="likes-label-{{post.id}}"
-        onclick="handleLike('{{post.id}}')"
+        class="ui label tiny likes-label {{ 'red' if current_user in post.likedByUsers }}"
+        id="likes-label-{{ post.id }}"
+        onclick="handleLike('{{ post.id }}')"
       >
         <i class="heart icon"></i>
-        <span id="likes-text-{{post.id}}">{{ post.likedByUsers|length }}</span>
+        <span id="likes-text-{{ post.id }}">{{ post.likedByUsers|length }}</span>
       </div>
     </div>
     {% endif %}
