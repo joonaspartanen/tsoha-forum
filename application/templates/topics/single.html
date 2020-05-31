@@ -1,23 +1,31 @@
-{% extends "layout.html" %} {% block body %}
+{% extends "layout.html" %}
 
+{% block body %}
 <div class="content-wrapper">
-  <h2 class="ui dividing header">{{ topic.subject }}</h2>
+  <h2 class="ui dividing header">{{ topic.subject }}
+    {% for tag in topic.tags %}
+    <span class="ui small label">{{ tag.name }}</span>
+    {% endfor %}
+  </h2>
   <div class="ui comments topic-list">
     {% for post in topic.posts %}
-      {% include "posts/_post.html" %}
+    {% include "posts/_post.html" %}
     {% endfor %}
 
     <form
       class="ui reply form"
       method="POST"
-      action="{{ url_for('posts_create', topic_id=topic.id) }}"
+      action="{{ url_for('create_post', topic_id=topic.id) }}"
     >
       <div class="field">
-        {{ form.body }} {% for error in form.body.errors %}
+        {{ form.body }}
+        
+        {% for error in form.body.errors %}
         <div class="ui pointing red basic label">
           {{ error }}
         </div>
         {% endfor %}
+      
       </div>
       <button class="ui teal labeled submit icon button" type="submit">
         <i class="pencil icon"></i>
