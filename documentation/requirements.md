@@ -25,6 +25,7 @@ Peruskäyttäjä voi käyttää sovellusta ainakin seuraavilla tavoilla:
   - viestiketjua luotaessa siihen lisätään samalla myös ensimmäinen viesti (tehty)
 - käyttäjä voi tarkastella listaa sovellukseen lisätyistä viestiketjuista (tehty)
 - viestiketjulistauksessa käyttäjä voi tarkastella kyseisen päivän tykätyimpien viestien listaa (tehty)
+
   - listaa ei näytetä, jos yhdestäkään kyseisen päivän viestistä ei ole tykätty (tehty)
 
 - käyttäjä voi avata viestiketjun klikkaamalla ja tarkastella siihen lisättyjä viestejä (tehty)
@@ -34,9 +35,18 @@ Peruskäyttäjä voi käyttää sovellusta ainakin seuraavilla tavoilla:
 - käyttäjä voi poistaa sovellukseen lisäämänsä viestiketjun (tehty)
 - käyttäjä voi muokata sovellukseen lisäämänsä viestiketjun otsikkoa (tehty)
 
-- käyttäjä voi tarkastella omaa profiiliaan
-  - profiilissa on esimerkiksi tieto käyttäjän sovellukseen lisäämien viestien ja niiden saamien tykkäyksien lukumäärästä
+- käyttäjä voi tarkastella omaa tai muiden käyttäjien profiilia (tehty)
+
+  - profiilissa on tieto käyttäjän sovellukseen lisäämien viestien ja niiden saamien tykkäyksien lukumäärästä (tehty)
+  - profiilissa on tieto käyttäjän sovellukseen lisäämien viestiketjujen määrästä
+  - käyttäjäprofiilissa on käyttäjän kuvaus (tehty)
+  - käyttäjä voi muokata omaa kuvaustaan (tehty)
 
 - käyttäjä voi hakea viestiketjuja mm. otsikon ja aihetunnisteiden avulla
 
-- lisäksi sovelluksen pääkäyttäjät voivat poistaa minkä tahansa viestiketjun ja muokata niiden otsikoita (tehty)
+- käyttäjä voi raportoida viestin esimerkiksi roskapostina
+
+- sovelluksen pääkäyttäjälle näytetään peruskäyttäjänäkymän ohjauspaneeli, jossa on listaus epäilyttäväksi raportoiduista viesteistä
+  - pääkäyttäjä voi siirtyä ohjauspaneelista suoraan raportoituun viestiin
+- sovelluksen pääkäyttäjät voivat poistaa minkä tahansa viestiketjun ja muokata niiden otsikoita (tehty)
+- sovelluksen pääkäyttäjät voivat poistaa tai muokata mitä tahansa viestiä
