@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form class="ui form" method="POST" action="{{ url_for('edit_profile', user_id=current_user.id) }}">
+  <div class="field">
+    <label>
+      {{ form.description.label }}
+    </label>
+    {{ form.description }} {% for error in form.description.errors %}
+    <div class="ui pointing red basic label">
+      {{ error }}
+    </div>
+    {% endfor %}
+  </div>
+  <button class="ui teal icon button" type="submit">
+    <i class="save icon"></i>
+    Save
+  </button>
+</form>
+
+{% endblock %}
