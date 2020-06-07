@@ -26,7 +26,18 @@
       {{ topic.author.username }}
     </a>
     <div class="metadata">
-      <span class="date">{{ moment(topic.date_created).fromNow() }}</span>
+      <div class="date">
+        <i class="clock alternate icon"></i>
+        {{ moment(topic.date_created).fromNow() }}
+      </div>
+      <div>
+        <i class="comment icon"></i>
+        {% if topic.posts|length == 1 %}
+        1 post
+        {% else %}
+        {{ topic.posts|length }} posts
+        {% endif %}
+      </div>
     </div>
     <div class="text">
       {{ topic.posts[0].body }}
