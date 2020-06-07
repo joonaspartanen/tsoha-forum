@@ -40,6 +40,14 @@
   color: grey;
 }
 
+.content > a {
+  color: black;
+}
+
+.content > a:hover {
+  color: grey;
+}
+
 .author:hover {
   color: grey !important;
 }
