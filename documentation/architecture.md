@@ -2,7 +2,7 @@
 
 ## Tietokantakaavio
 
-Sovelluksen tietokannan suunniteltua rakennetta kuvaa seuraava kaavio (päivitetty viikolla 2 eli ei täysin ajankohtainen):
+Sovelluksen tietokannan suunniteltua rakennetta kuvaa seuraava kaavio (päivitetty viikolla 4):
 
 ![Tietokantakaavio](https://raw.githubusercontent.com/joonaspartanen/tsoha-forum/master/documentation/images/erdiagram.png)
 
@@ -10,7 +10,9 @@ Sovelluksen keskeisiä käsitteitä ovat siis _User_ (käyttäjä), _Topic_ (vie
 
 Käsitteiden väliset suhteet ovat seuraavat:
 
-- Kuhunkin viestiketjuun ja viestiin liittyy yksi käyttäjä, ja kukin käyttäjä voi luoda useita viestiketjuja ja viestejä (yhden suhde moneen -yhteys).
+- Kuhunkin viestiketjuun ja viestiin liittyy yksi ketjun tai viestin luonut käyttäjä. Kukin käyttäjä voi luoda useita viestiketjuja ja viestejä (yhden suhde moneen -yhteys).
+
+- Kuhunkin viestiin voi liittyä useita käyttäjiä, jotka ovat tykänneet kyseisestä viestistä. Kukin käyttäjä voi tykätä useista viesteistä (monen suhde moneen -yhteys).
 
 - Kuhunkin viestiketjuun voi liittyä useita viestejä, mutta kukin viesti voi liittyä vain yhteen viestiketjuun (yhden suhde moneen -yhteys).
 
