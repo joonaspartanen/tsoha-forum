@@ -3,7 +3,7 @@ from flask import jsonify, redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 from sqlalchemy import desc
 from application.topics.models import Topic
-from application.topics.forms import TopicForm
+from application.topics.forms import TopicForm, SearchForm
 from application.posts.models import Post
 from application.posts.forms import PostForm
 from application.tags.models import Tag
@@ -24,7 +24,7 @@ def topics_index():
         prev_url = url_for('topics_index', page=topics.prev_num)
 
     most_liked_posts = Post.find_most_liked_posts_today()
-    return render_template("topics/list.html", topics=topics.items, most_liked_posts=most_liked_posts, next_url=next_url, prev_url=prev_url)
+    return render_template("topics/all_topics.html", topics=topics.items, most_liked_posts=most_liked_posts, next_url=next_url, prev_url=prev_url)
 
 
 @app.route("/topics/<topic_id>", methods=["GET"])
@@ -57,10 +57,11 @@ def create_topic():
 
     subject = form.subject.data
     body = form.body.data
+    author_id = current_user.id
 
     initial_post = Post(body)
-    initial_post.author_id = current_user.id
-    topic = Topic(subject)
+    initial_post.author_id = author_id
+    topic = Topic(subject, author_id)
     topic.posts.append(initial_post)
 
     tag_names = form.tags.data[0].split(",")
@@ -109,12 +110,22 @@ def rename_topic(topic_id):
     resp = jsonify(success=True)
     return resp
 
+
 @app.route("/topics/search", methods=["GET"])
 @login_required
 def view_search_form():
-    return render_template("topics/search.html")
+    tags = Tag.query.all()
+    return render_template("topics/search.html", form=SearchForm(), tags=tags)
+
 
 @app.route("/topics/search", methods=["POST"])
 @login_required
 def search_topics():
-    return redirect(url_for("topics_index"))
+    form = SearchForm(request.form)
+
+    if not form.validate():
+        return render_template("topics/search.html", form=form)
+
+    search_results = Topic.search_topics(subject=form.subject.data, author=form.author.data)
+
+    return render_template("topics/search_results.html", topics=search_results)
