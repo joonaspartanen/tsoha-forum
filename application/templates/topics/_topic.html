@@ -3,7 +3,7 @@
     <h3 class="topic-subject">
       <a href="{{ url_for('view_topic', topic_id=topic.id) }}">{{ topic.subject }}</a>
     </h3>
-    {% if current_user.is_admin or topic.posts[0].author == current_user %}
+    {% if current_user.is_admin or topic.author == current_user %}
     <div class="toolbar">
       <i
         onclick="handleEditTopic('{{ topic.id }}')"
@@ -22,8 +22,8 @@
     <img src="../../static/images/avatar.png" alt="User avatar" />
   </a>
   <div class="content">
-    <a class="author" href="{{ url_for('view_user_page', user_id=topic.posts[0].author.id) }}">
-      {{ topic.posts[0].author.username }}
+    <a class="author" href="{{ url_for('view_user_page', user_id=topic.author.id) }}">
+      {{ topic.author.username }}
     </a>
     <div class="metadata">
       <span class="date">{{ moment(topic.date_created).fromNow() }}</span>
