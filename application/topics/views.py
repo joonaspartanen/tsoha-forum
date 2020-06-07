@@ -2,6 +2,7 @@ from application import app, db
 from flask import jsonify, redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 from sqlalchemy import desc
+from sqlalchemy.orm import joinedload
 from application.topics.models import Topic
 from application.topics.forms import TopicForm, SearchForm
 from application.posts.models import Post
@@ -13,8 +14,8 @@ from application.tags.models import Tag
 @login_required
 def topics_index():
     page = request.args.get("page", 1, type=int)
-    topics = Topic.query.order_by(
-        desc(Topic.date_created)).paginate(page, 5, False)
+    topics = Topic.query.options(joinedload(Topic.posts), joinedload(Topic.tags), joinedload(
+        Topic.author)).order_by(desc(Topic.date_created)).paginate(page, 5, False)
 
     next_url = None
     prev_url = None
@@ -132,6 +133,7 @@ def search_topics():
     if not form.validate():
         return render_template("topics/search.html", form=form)
 
-    search_results = Topic.search_topics(subject=form.subject.data, author=form.author.data)
+    search_results = Topic.search_topics(
+        subject=form.subject.data, author=form.author.data)
 
     return render_template("topics/search_results.html", topics=search_results)
