@@ -30,10 +30,10 @@ class Topic(db.Model):
     def search_topics(subject, author):
 
         stmt = text("SELECT Topics.id AS topic_id, Topics.date_created, Topics.date_modified, "
-                    "Topics.subject, Accounts.id AS author_id, Accounts.username AS author, Initial_posts.body "
+                    "Topics.subject, Accounts.id AS author_id, Accounts.username, Initial_posts.body "
                     "FROM Topics JOIN Accounts ON Accounts.id = Topics.author_id JOIN (SELECT topic_id, body "
                     "FROM Posts WHERE id IN(SELECT MIN(id) FROM Posts GROUP BY topic_id)) AS Initial_posts "
-                    "ON Topics.id=Initial_posts.topic_id WHERE subject LIKE :subject AND author LIKE :author "
+                    "ON Topics.id=Initial_posts.topic_id WHERE subject LIKE :subject AND Accounts.username LIKE :author "
                     "ORDER BY Topics.date_created DESC;").params(subject=f"%{subject}%", author=f"%{author}%")
 
         result = db.engine.execute(stmt)
