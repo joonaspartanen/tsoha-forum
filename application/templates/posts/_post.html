@@ -1,17 +1,23 @@
 <div class="comment post-wrapper">
   <a class="avatar">
-    <img src="../../static/images/avatar.png" alt="User avatar"/>
+    <img src="../../static/images/avatar.png" alt="User avatar" />
   </a>
   <div class="content">
-    <a class="author" href="{{ url_for('view_user_page', user_id=post.author.id) }}">{{ post.author.username }}</a>
+    <a class="author" href="{{ url_for('view_user_page', user_id=post.author.id) }}"
+      >{{ post.author.username }}</a
+    >
     <div class="metadata">
       <span class="date">{{ moment(post.date_created).fromNow() }}</span>
     </div>
-    
+
     {% if post.preview %}
     <div class="text">
       {{ post.body|truncate(100, False) }}
     </div>
+    <a href="{{ url_for('view_topic', topic_id=post.topic_id) }}">
+      <i class="reply icon"></i>
+      Reply
+    </a>
     {% else %}
     <div class="text">
       {{ post.body }}
