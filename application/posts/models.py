@@ -1,6 +1,5 @@
 from application import db
 from application.utils.helper import TimeFormatter
-
 from sqlalchemy.sql import text
 
 post_likes = db.Table("post_likes",
@@ -52,4 +51,3 @@ class Post(db.Model):
                              "likes": row[4], "topic_id": row[5], "author": {"id": row[6], "username": row[7]}, "preview": True})
 
         return response
-
