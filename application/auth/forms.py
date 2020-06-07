@@ -4,8 +4,8 @@ from wtforms import PasswordField, StringField, TextAreaField, validators
 
 class UserForm(FlaskForm):
     username = StringField("Username", [validators.Length(
-        min=5), validators.DataRequired()], render_kw={"placeholder": "Username"})
-    password = PasswordField("Password", [validators.Length(min=8), validators.DataRequired()], render_kw={
+        min=5, max=100), validators.DataRequired()], render_kw={"placeholder": "Username"})
+    password = PasswordField("Password", [validators.Length(min=8, max=144), validators.DataRequired()], render_kw={
                              "placeholder": "Password"})
 
     class Meta:
