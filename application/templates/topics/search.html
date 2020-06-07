@@ -1,21 +1,30 @@
 {% extends "layout.html" %} {% block body %}
 
-<div class="ui negative message">
-  <i class="close icon"></i>
-  <div class="header">
-    Unimplemented feature!
-  </div>
-</div>
+<h2>Search topics</h2>
 
 <form class="ui form" method="POST" action="{{ url_for('search_topics') }}">
   <div class="field">
-    <label for="subject">Subject</label>
-    <input type="text" name="subject" />
+    {{ form.subject.label }}
+    {{ form.subject }}
+    
+    {% for error in form.subject.errors %}
+    <div class="ui pointing red basic label">
+      {{ error }}
+    </div>
+    {% endfor %}
   </div>
+
   <div class="field">
-    <label for="tag">Tag</label>
-    <input type="text" name="tag" />
+    {{ form.author.label }}
+    {{ form.author }}
+    
+    {% for error in form.author.errors %}
+    <div class="ui pointing red basic label">
+      {{ error }}
+    </div>
+    {% endfor %}
   </div>
+
   <button class="ui teal icon button" type="submit">
     <i class="search icon"></i>
     Search
