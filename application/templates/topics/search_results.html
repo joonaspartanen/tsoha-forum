@@ -1,0 +1,30 @@
+{% extends "layout.html" %} {% block body %}
+<div class="content-wrapper">
+  <h2 class="ui header">Search results</h2>
+  <div class="ui comments topic-list">
+    {% for topic in topics %}
+    <div class="comment topic-wrapper" id="topic-wrapper-{{topic.id}}">
+      <div class="topic-header-row">
+        <h3 class="topic-subject">
+          <a href="{{ url_for('view_topic', topic_id=topic.id) }}">{{ topic.subject }}</a>
+        </h3>
+      </div>
+      <a class="avatar">
+        <img src="../../static/images/avatar.png" alt="User avatar" />
+      </a>
+      <div class="content">
+        <a class="author" href="{{ url_for('view_user_page', user_id=topic.author.id) }}">
+          {{ topic.author.username }}
+        </a>
+        <div class="metadata">
+          <span class="date">{{ moment(topic.date_created).fromNow() }}</span>
+        </div>
+        <div class="text">
+          {{ topic.initial_post_body }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
