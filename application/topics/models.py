@@ -37,13 +37,9 @@ class Topic(db.Model):
                     "ORDER BY Topics.date_created DESC;").params(subject=f"%{subject}%", author=f"%{author}%")
 
         result = db.engine.execute(stmt)
-        print(result.keys())
-
         response = []
 
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         for row in result:
-            print(row)
             response.append({"id": row[0], "date_created": TimeFormatter.get_timestamp(row[1]), "date_modified": TimeFormatter.get_timestamp(row[2]),
                              "subject": row[3], "author": {"id": row[4], "username": row[5]}, "initial_post_body": row[6]})
         return response
