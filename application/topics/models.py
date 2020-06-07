@@ -9,8 +9,8 @@ class Topic(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(
-    ), onupdate=db.func.current_timestamp())
+    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
+        onupdate=db.func.current_timestamp())
 
     subject = db.Column(db.String(100), nullable=False)
 
