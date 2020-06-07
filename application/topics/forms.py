@@ -20,8 +20,8 @@ class TopicForm(FlaskForm):
                 'Please provide at least one tag to describe the topic.')
 
         for tag_name in tag_names:
-            if len(tag_name) > 10:
-                raise ValidationError('A tag can be only 10 characters long.')
+            if len(tag_name) > 20:
+                raise ValidationError('A tag can be only 20 characters long.')
 
 
 class SearchForm(FlaskForm):

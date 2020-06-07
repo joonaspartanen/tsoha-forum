@@ -13,7 +13,7 @@ class Tag(db.Model):
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
                               onupdate=db.func.current_timestamp())
 
-    name = db.Column(db.String(10), nullable=False)
+    name = db.Column(db.String(20), nullable=False)
 
     topics = db.relationship('Topic', secondary=tag_topics)
 
