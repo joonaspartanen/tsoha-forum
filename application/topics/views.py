@@ -82,6 +82,9 @@ def create_topic():
 def delete_topic(topic_id):
     topic = Topic.query.get(topic_id)
 
+    if not current_user.is_admin and current_user.id != topic.author_id:
+        return redirect(url_for("topics_index"))
+
     if topic is None:
         return redirect(url_for("topics_index"))
 
@@ -99,6 +102,9 @@ def delete_topic(topic_id):
 @login_required
 def rename_topic(topic_id):
     topic = Topic.query.get(topic_id)
+
+    if not current_user.is_admin and current_user.id != topic.author_id:
+        return redirect(url_for("topics_index"))
 
     if topic is None:
         return redirect(url_for("topics_index"))
