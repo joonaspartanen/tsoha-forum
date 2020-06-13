@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from application.posts.models import Post
 from application.posts.forms import PostForm
 from application.topics.models import Topic
+from application.auth.services import UserService
 
 
 @app.route("/topics/<topic_id>/posts", methods=["POST"])
@@ -38,7 +39,7 @@ def view_edit_post_form(post_id, topic_id):
     if post is None:
         return redirect(url_for("view_topic", topic_id=topic_id))
 
-    if not current_user.is_admin and current_user.id != post.author_id:
+    if UserService.user_not_admin_nor_editing_own_content(post.author_id):
         return redirect(url_for("view_topic", topic_id=topic_id))
 
     form = PostForm()
@@ -54,7 +55,7 @@ def edit_post(post_id, topic_id):
     if post_in_db is None:
         return redirect(url_for("view_topic", topic_id=topic_id))
 
-    if not current_user.is_admin and current_user.id != post_in_db.author_id:
+    if UserService.user_not_admin_nor_editing_own_content(post_in_db.author_id):
         return redirect(url_for("view_topic", topic_id=topic_id))
 
     form = PostForm(request.form)
@@ -65,7 +66,25 @@ def edit_post(post_id, topic_id):
     db.session.commit()
 
     return redirect(url_for("view_topic", topic_id=topic_id))
-    
+
+
+@app.route("/topics/<topic_id>/posts/<post_id>", methods=["DELETE"])
+@login_required
+def delete_post(post_id, topic_id):
+    post = Post.query.get(post_id)
+
+    if post is None:
+        return redirect(url_for("view_topic", topic_id=topic_id))
+
+    if UserService.user_not_admin_nor_editing_own_content(post.author_id):
+        return redirect(url_for("view_topic", topic_id=topic_id))
+
+    db.session().delete(post)
+    db.session.commit()
+
+    resp = jsonify(success=True)
+    return resp
+
 
 @app.route("/topics/<topic_id>/posts/<post_id>/likes", methods=["PUT"])
 @login_required
@@ -89,11 +108,11 @@ def unlike_post(post_id, topic_id):
     post = Post.query.get(post_id)
 
     if current_user in post.likedByUsers:
-            post.likedByUsers.remove(current_user)
-            db.session().commit()
+        post.likedByUsers.remove(current_user)
+        db.session().commit()
 
-            resp = jsonify(success=True)
-            return resp
+        resp = jsonify(success=True)
+        return resp
 
     resp = jsonify(success=False)
     return resp

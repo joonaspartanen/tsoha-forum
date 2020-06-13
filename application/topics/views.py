@@ -3,6 +3,7 @@ from flask import jsonify, redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 from sqlalchemy import desc
 from sqlalchemy.orm import joinedload
+from application.auth.services import UserService
 from application.topics.models import Topic
 from application.topics.forms import TopicForm, SearchForm
 from application.posts.models import Post
@@ -83,7 +84,7 @@ def create_topic():
 def delete_topic(topic_id):
     topic = Topic.query.get(topic_id)
 
-    if not current_user.is_admin and current_user.id != topic.author_id:
+    if UserService.user_not_admin_nor_editing_own_content(topic.author_id):
         return redirect(url_for("topics_index"))
 
     if topic is None:
@@ -104,7 +105,7 @@ def delete_topic(topic_id):
 def rename_topic(topic_id):
     topic = Topic.query.get(topic_id)
 
-    if not current_user.is_admin and current_user.id != topic.author_id:
+    if UserService.user_not_admin_nor_editing_own_content(topic.author_id):
         return redirect(url_for("topics_index"))
 
     if topic is None:
