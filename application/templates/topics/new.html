@@ -1,4 +1,6 @@
-{% extends "layout.html" %} {% block body %}
+{% extends "layout.html" %}
+
+{% block body %}
 
 <form
   class="ui form"
@@ -7,14 +9,19 @@
   onkeydown="return event.key != 'Enter'"
 >
   <div class="field">
-    {{ form.subject.label }} {{ form.subject }} {% for error in form.subject.errors %}
+    {{ form.subject.label }}
+    {{ form.subject }}
+    {% for error in form.subject.errors %}
     <div class="ui pointing red basic label">
       {{ error }}
     </div>
     {% endfor %}
   </div>
   <div class="field">
-    {{ form.body.label }} {{ form.body }} {% for error in form.body.errors %}
+    {{ form.body.label }}
+    {{ form.body }}
+    
+    {% for error in form.body.errors %}
     <div class="ui pointing red basic label">
       {{ error }}
     </div>
