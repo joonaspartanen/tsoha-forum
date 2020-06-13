@@ -29,7 +29,7 @@
       <div
         class="ui label tiny likes-label {{ 'red' if current_user in post.likedByUsers }}"
         id="likes-label-{{ post.id }}"
-        onclick="handleLike('{{ post.id }}')"
+        onclick="handleLike('{{ post.id }}', '{{ post.topic_id }}')"
       >
         <i class="heart icon"></i>
         <span id="likes-text-{{ post.id }}">{{ post.likedByUsers|length }}</span>
