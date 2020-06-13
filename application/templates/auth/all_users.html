@@ -1,0 +1,65 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="ui two column centered grid">
+  <div class="centered row">
+    <table class="ui striped celled collapsing table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Member since</th>
+          <th>Topics created</th>
+          <th>Posts created</th>
+          <th>Admin</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user.username }}</td>
+          <td>
+            {{ moment(user.date_created).format("DD/MM/YYYY") }}
+          </td>
+          <td>{{ user.topics|length }}</td>
+          <td>{{ user.posts|length }}</td>
+          <td id="admin-rights-cell-{{user.id}}">
+            {% if user.is_admin %} Yes {% else %} No {% endif %}
+          </td>
+          <td>
+            {% if user.id == current_user.id %}
+            <div></div>
+            {% elif user.is_admin %}
+            <button
+              class="ui button"
+              onclick="removeAdminRights('{{ user.id }}')"
+              id="remove-admin-rights-button-{{user.id}}"
+            >
+              <i class="ban icon"></i>
+              Remove admin rights
+            </button>
+            {% else %}
+            <button
+              class="ui button"
+              onclick="giveAdminRights('{{ user.id }}')"
+              id="give-admin-rights-button-{{user.id}}"
+            >
+              <i class="id badge icon"></i>
+              Give admin rights
+            </button>
+            {% endif %}
+          </td>
+          <td>
+            <a class="ui button" href="{{ url_for('view_edit_profile', user_id=user.id) }}">
+              <i class="pencil icon"></i>
+              Edit profile
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
