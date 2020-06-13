@@ -4,7 +4,7 @@
       <a href="{{ url_for('view_topic', topic_id=topic.id) }}">{{ topic.subject }}</a>
     </h3>
     {% if current_user.is_admin or topic.author == current_user %}
-    <div class="toolbar">
+    <div class="button-group">
       <i
         onclick="handleEditTopic('{{ topic.id }}')"
         class="pencil icon link edit-topic-icon"
