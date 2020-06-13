@@ -2,33 +2,29 @@
   min-height: 100vh;
 }
 
-.ui.main.container {
-  padding-top: 1em !important;
+h1.ui.header.main-title {
+  padding: 0.5em 0em 1em 0em;
+  font-size: 300%;
 }
 
-.main-title {
-  padding: 0.5em 0em 0.5em 0em !important;
-  font-size: 300% !important;
+.ui.main.container > .content-wrapper {
+  max-width: 1200px;
 }
 
-.content-wrapper {
-  max-width: 1200px !important;
+.comments.topic-list {
+  max-width: 100%;
 }
 
-.topic-list {
-  max-width: 100% !important;
-}
-
-.topic-wrapper {
-  padding: 0em 1em 1em 1em !important;
-  border: 1px solid darkgrey !important;
-  margin-bottom: 1em !important;
+.comments > .comment.topic-wrapper {
+  padding: 0em 1em 1em 1em;
+  border: 1px solid darkgrey;
+  margin-bottom: 1em;
   border-radius: 4px;
-  width: 100% !important;
+  width: 100%;
 }
 
-.topic-subject {
-  margin-bottom: 0 !important;
+.topic-header-row > .topic-subject {
+  margin-bottom: 0;
   width: 90%;
 }
 
@@ -48,7 +44,7 @@
   color: grey;
 }
 
-.author:hover {
+.content > .author:hover {
   color: grey !important;
 }
 
@@ -76,8 +72,8 @@
   justify-content: center;
 }
 
-.post-wrapper {
-  margin-bottom: 2em !important;
+.comments > .comment.post-wrapper {
+  margin-bottom: 2em;
 }
 
 .post-body {
@@ -88,22 +84,18 @@
   font-size: 0.7em;
 }
 
-.likes-label {
-  margin-top: 1em !important;
+.ui.form > .field > textarea {
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
-textarea {
-  font-family: 'Lato', sans-serif !important;
-}
-
-.edit-topic-icon {
-  position: absolute !important;
+.edit-icon {
+  position: absolute;
   right: 2.5em;
   top: 1.2em;
 }
 
-.delete-topic-icon {
-  position: absolute !important;
+.delete-icon {
+  position: absolute;
   right: 1em;
   top: 1.2em;
 }
