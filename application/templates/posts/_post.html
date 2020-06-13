@@ -1,4 +1,4 @@
-<div class="comment post-wrapper">
+<div class="comment post-wrapper" id="post-{{ post.id }}">
   <a class="avatar">
     <img src="../../static/images/avatar.png" alt="User avatar" />
   </a>
@@ -23,7 +23,6 @@
       {{ post.body }}
     </div>
     {% endif %}
-    
     {% if not post.preview %}
     <div class="actions">
       <div
@@ -34,6 +33,14 @@
         <i class="heart icon"></i>
         <span id="likes-text-{{ post.id }}">{{ post.likedByUsers|length }}</span>
       </div>
+      {% if current_user.is_admin or post.author == current_user %}
+      <a href="{{ url_for('view_edit_post_form', post_id=post.id, topic_id=post.topic_id) }}"
+        ><i class="pencil icon"></i>Edit</a
+      >
+      <a onclick="handlePostDelete('{{ post.id }}', '{{ post.topic_id }}')"
+        ><i class="delete icon"></i>Delete</a
+      >
+      {% endif %}
     </div>
     {% endif %}
   </div>
