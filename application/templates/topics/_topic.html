@@ -5,7 +5,16 @@
     </h3>
     {% if current_user.is_admin or topic.author == current_user %}
     <div class="toolbar">
-      {% include "buttons/_edit_icon_button.html" %}
+      <i
+        onclick="handleEditTopic('{{ topic.id }}')"
+        class="pencil icon link edit-topic-icon"
+        aria-label="Edit topic title"
+      ></i>
+      <i
+        onclick="handleDeleteTopic('{{ topic.id }}')"
+        class="delete icon link delete-icon"
+        aria-label="Delete topic"
+      ></i>
       {% include "buttons/_delete_icon_button.html" %}
     </div>
     {% endif %}
@@ -24,11 +33,8 @@
       </div>
       <div>
         <i class="comment icon"></i>
-        {% if topic.posts|length == 1 %}
-        1 post
-        {% else %}
-        {{ topic.posts|length }} posts
-        {% endif %}
+        {% if topic.posts|length == 1 %} 1 post {% else %} {{ topic.posts|length }} posts {% endif
+        %}
       </div>
     </div>
     <div class="text">
