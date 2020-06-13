@@ -3,9 +3,6 @@ const logout = () => {
 }
 
 const handleLike = (postId, topicId) => {
-  console.log(postId)
-  console.log(topicId)
-
   const likesText = document.querySelector(`#likes-text-${postId}`)
   const likesLabel = document.querySelector(`#likes-label-${postId}`)
 
@@ -29,7 +26,7 @@ const handleLike = (postId, topicId) => {
       headers: { Accept: 'application/json' },
     })
       .then((response) => response.json())
-      .then((data) => { 
+      .then((data) => {
         if (data.success) {
           likesText.innerHTML = Number(likesText.innerHTML) - 1
           likesLabel.classList.remove('red')
@@ -75,6 +72,45 @@ const handleEditTopic = (topicId) => {
           input.replaceWith(topicSubject)
         }
       })
+    }
+  })
+}
+
+const giveAdminRights = (userId) => {
+  fetch(`/auth/users/${userId}/admin`, {
+    method: 'POST',
+  }).then((response) => {
+    if (response.ok) {
+      const button = document.querySelector(`#give-admin-rights-button-${userId}`)
+      const adminRightsCell = document.querySelector(`#admin-rights-cell-${userId}`)
+      button.innerHTML = 'Admin rights granted'
+      button.classList.add('disabled')
+      adminRightsCell.innerHTML = 'Yes'
+    }
+  })
+}
+
+const removeAdminRights = (userId) => {
+  fetch(`/auth/users/${userId}/admin`, {
+    method: 'DELETE',
+  }).then((response) => {
+    if (response.ok) {
+      const button = document.querySelector(`#remove-admin-rights-button-${userId}`)
+      const adminRightsCell = document.querySelector(`#admin-rights-cell-${userId}`)
+      button.innerHTML = 'Admin rights removed'
+      button.classList.add('disabled')
+      adminRightsCell.innerHTML = 'No'
+    }
+  })
+}
+
+const handlePostDelete = (postId, topicId) => {
+  fetch(`/topics/${topicId}/posts/${postId}`, {
+    method: 'DELETE',
+  }).then((response) => {
+    if (response.ok) {
+      const post = document.querySelector(`#post-${postId}`)
+      post.parentNode.removeChild(post)
     }
   })
 }
