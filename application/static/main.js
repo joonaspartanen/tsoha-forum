@@ -2,12 +2,15 @@ const logout = () => {
   document.getElementById('logout-form').submit()
 }
 
-const handleLike = (postId) => {
+const handleLike = (postId, topicId) => {
+  console.log(postId)
+  console.log(topicId)
+
   const likesText = document.querySelector(`#likes-text-${postId}`)
   const likesLabel = document.querySelector(`#likes-label-${postId}`)
 
   if (!likesLabel.classList.contains('red')) {
-    fetch(`/posts/${postId}/likes`, {
+    fetch(`/topics/${topicId}/posts/${postId}/likes`, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
@@ -21,12 +24,12 @@ const handleLike = (postId) => {
         }
       })
   } else {
-    fetch(`/posts/${postId}/likes`, {
+    fetch(`/topics/${topicId}/posts/${postId}/likes`, {
       method: 'DELETE',
       headers: { Accept: 'application/json' },
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then((data) => { 
         if (data.success) {
           likesText.innerHTML = Number(likesText.innerHTML) - 1
           likesLabel.classList.remove('red')
