@@ -86,7 +86,14 @@ def view_user_page(user_id):
 @app.route("/auth/users/<user_id>/edit", methods=["GET"])
 @login_required
 def view_edit_profile(user_id):
-    return render_template("auth/edit_profile.html", form=EditProfileForm())
+    user = User.query.filter_by(id=user_id).first()
+    if not user:
+        redirect(url_for("topics_index"))
+    
+    form = EditProfileForm()
+    form.description.data = user.description
+    
+    return render_template("auth/edit_profile.html", form=form)
 
 
 @app.route("/auth/users/<user_id>/edit", methods=["POST"])
