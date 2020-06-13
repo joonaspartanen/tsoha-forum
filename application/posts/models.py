@@ -37,10 +37,10 @@ class Post(db.Model):
     def find_most_liked_posts_today(amount=5):
         stmt = text("SELECT Posts.id, Posts.date_created, Posts.date_modified, "
                     "Posts.body, Post_likes.likes, Posts.topic_id, Posts.author_id, "
-                    "Accounts.username from Posts JOIN (SELECT post_id, COUNT(post_id) AS likes "
-                    "FROM Post_likes GROUP BY post_id ORDER BY likes DESC LIMIT :amount) AS Post_likes "
-                    "ON Posts.id = Post_likes.post_id JOIN Accounts ON Posts.author_id = Accounts.id "
-                    "WHERE date(Posts.date_created) = date('now');").params(amount=amount)
+                    "Accounts.username FROM Posts JOIN (SELECT post_id, COUNT(post_id) AS likes "
+                    "FROM Post_likes GROUP BY post_id) AS Post_likes ON Posts.id = Post_likes.post_id "
+                    "JOIN Accounts ON Posts.author_id = Accounts.id WHERE date(Posts.date_created) = date('now') "
+                    "ORDER BY likes DESC LIMIT :amount;").params(amount=amount)
 
         result = db.engine.execute(stmt)
 
