@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h2 class="ui header">Edit post</h2>
+
+<form
+  class="ui form"
+  method="POST"
+  action="{{ url_for('edit_post', post_id=post.id, topic_id=post.topic_id) }}"
+>
+  <div class="field">
+    {{ form.body.label }}
+    
+    {{ form.body }}
+    
+    {% for error in form.body.errors %}
+    <div class="ui pointing red basic label">
+      {{ error }}
+    </div>
+    {% endfor %}
+  </div>
+  {% include "buttons/_save_button.html" %}
+</form>
+
+{% endblock %}
