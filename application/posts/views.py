@@ -30,9 +30,46 @@ def create_post(topic_id):
     return redirect(url_for("view_topic", topic_id=topic_id))
 
 
-@app.route("/posts/<post_id>/likes", methods=["PUT"])
+@app.route("/topics/<topic_id>/posts/<post_id>/edit", methods=["GET"])
 @login_required
-def like_post(post_id):
+def view_edit_post_form(post_id, topic_id):
+    post = Post.query.get(post_id)
+
+    if post is None:
+        return redirect(url_for("view_topic", topic_id=topic_id))
+
+    if not current_user.is_admin and current_user.id != post.author_id:
+        return redirect(url_for("view_topic", topic_id=topic_id))
+
+    form = PostForm()
+    form.body.data = post.body
+    return render_template("posts/edit_post.html", post=post, form=form)
+
+
+@app.route("/topics/<topic_id>/posts/<post_id>", methods=["POST"])
+@login_required
+def edit_post(post_id, topic_id):
+    post_in_db = Post.query.get(post_id)
+
+    if post_in_db is None:
+        return redirect(url_for("view_topic", topic_id=topic_id))
+
+    if not current_user.is_admin and current_user.id != post_in_db.author_id:
+        return redirect(url_for("view_topic", topic_id=topic_id))
+
+    form = PostForm(request.form)
+    if not form.validate():
+        return render_template("posts/edit_post.html", post=post_in_db, form=form)
+
+    post_in_db.body = form.body.data
+    db.session.commit()
+
+    return redirect(url_for("view_topic", topic_id=topic_id))
+    
+
+@app.route("/topics/<topic_id>/posts/<post_id>/likes", methods=["PUT"])
+@login_required
+def like_post(post_id, topic_id):
     post = Post.query.get(post_id)
 
     if current_user not in post.likedByUsers:
@@ -46,9 +83,9 @@ def like_post(post_id):
     return resp
 
 
-@app.route("/posts/<post_id>/likes", methods=["DELETE"])
+@app.route("/topics/<topic_id>/posts/<post_id>/likes", methods=["DELETE"])
 @login_required
-def unlike_post(post_id):
+def unlike_post(post_id, topic_id):
     post = Post.query.get(post_id)
 
     if current_user in post.likedByUsers:
