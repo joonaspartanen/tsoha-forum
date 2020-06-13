@@ -1,9 +1,10 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 
 from application import app, db
 from application.auth.models import User
 from application.auth.forms import UserForm, EditProfileForm
+from application.auth.services import UserService
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
@@ -89,10 +90,13 @@ def view_edit_profile(user_id):
     user = User.query.filter_by(id=user_id).first()
     if not user:
         redirect(url_for("topics_index"))
-    
+
+    if UserService.user_not_admin_nor_editing_own_content(user_id):
+        redirect(url_for("topics_index"))
+
     form = EditProfileForm()
     form.description.data = user.description
-    
+
     return render_template("auth/edit_profile.html", form=form)
 
 
@@ -104,6 +108,9 @@ def edit_profile(user_id):
     if not form.validate():
         return render_template("auth/edit_profile.html", form=form)
 
+    if UserService.user_not_admin_nor_editing_own_content(user_id):
+        redirect(url_for("topics_index"))
+
     user = User.query.filter_by(id=user_id).first()
 
     if not user:
@@ -113,6 +120,45 @@ def edit_profile(user_id):
     db.session().commit()
 
     return redirect(url_for("view_user_page", user_id=user_id))
+
+
+@app.route("/auth/users", methods=["GET"])
+@login_required
+def view_all_users():
+    if not current_user.is_admin:
+        return redirect(url_for("topics_index"))
+
+    users = User.query.all()
+
+    return render_template("auth/all_users.html", users=users)
+
+
+@app.route("/auth/users/<user_id>/admin", methods=["POST"])
+@login_required
+def give_admin_rights(user_id):
+    if not current_user.is_admin:
+        return redirect(url_for("view_all_users"))
+
+    user = User.query.filter_by(id=user_id).first()
+    user.is_admin = True
+
+    db.session().commit()
+
+    return redirect(url_for("view_all_users"), code=303)
+
+
+@app.route("/auth/users/<user_id>/admin", methods=["DELETE"])
+@login_required
+def remove_admin_rights(user_id):
+    if not current_user.is_admin:
+        return redirect(url_for("view_all_users"))
+
+    user = User.query.filter_by(id=user_id).first()
+    user.is_admin = False
+
+    db.session().commit()
+
+    return redirect(url_for("view_all_users"), code=303)
 
 
 def create_testadmin_if_absent():
