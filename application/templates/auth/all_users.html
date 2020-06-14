@@ -21,8 +21,8 @@
           <td>
             {{ moment(user.date_created).format("DD/MM/YYYY") }}
           </td>
-          <td>{{ user.topics|length }}</td>
-          <td>{{ user.posts|length }}</td>
+          <td>{{ user.topics_amount }}</td>
+          <td>{{ user.posts_amount }}</td>
           <td id="admin-rights-cell-{{user.id}}">
             {% if user.is_admin %} Yes {% else %} No {% endif %}
           </td>
