@@ -26,12 +26,12 @@
     {% if not post.preview %}
     <div class="actions">
       <div
-        class="ui label tiny likes-label {{ 'red' if current_user in post.likedByUsers }}"
+        class="ui label tiny likes-label {{ 'red' if current_user in post.liked_by_users }}"
         id="likes-label-{{ post.id }}"
         onclick="handleLike('{{ post.id }}', '{{ post.topic_id }}')"
       >
         <i class="heart icon"></i>
-        <span id="likes-text-{{ post.id }}">{{ post.likedByUsers|length }}</span>
+        <span id="likes-text-{{ post.id }}">{{ post.liked_by_users|length }}</span>
       </div>
       {% if current_user.is_admin or post.author == current_user %}
       <a href="{{ url_for('view_edit_post_form', post_id=post.id, topic_id=post.topic_id) }}"
