@@ -6,7 +6,7 @@ Tämä on repositorio Helsingin yliopiston kurssille [Aineopintojen harjoitusty�
 
 - [Käyttötapaukset](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/requirements.md)
 
-- [Käyttöohjeet](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/user_instructions.md)
+- [Käyttöohjeet](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/user_instructions.md)
 
 - [Asennusohjeet](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/installation.md)
 
