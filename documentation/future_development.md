@@ -17,3 +17,7 @@ Eristin joitain usein toistuvia elementtejä erillisiksi template-tiedostoiksi, 
 ## Sovelluksen arkkitehtuuri
 
 Sovelluksen kontrollerikerroksessa on – kurssimateriaalia seuraten – paljon sovelluslogiikkaa, joka olisi ehkä hyvä siirtää erilliseen kerrokseen. Samalla olisi helpompi poistaa kontrollereissa jonkin verran toistuvaa koodia.
+
+## Sivutus
+
+Viestiketjunäkymä hyödyntää sivutusta, mutta sovelluksessa on myös muita näkymiä (viestiketjun viestit, kaikki käyttäjät), joihin olisi hyvä lisätä sivutus.
