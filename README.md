@@ -6,6 +6,8 @@ Tämä on repositorio Helsingin yliopiston kurssille [Aineopintojen harjoitusty�
 
 - [Vaatimusmäärittely ja yleisimmät käyttötapaukset](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/requirements.md)
 
+- [Käyttöohjeet](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/user_instructions.md)
+
 ## Yleistä
 
 Harjoitustyön aiheena on keskustelufoorumi. Rekisteröityneet käyttäjät voivat luoda foorumille viestiketjuja, joihin he voivat lisätä viestejä. Käyttäjät voivat tykätä viesteistä.
