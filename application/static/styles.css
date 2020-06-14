@@ -2,13 +2,13 @@
   min-height: 100vh;
 }
 
+.ui.main.container > .content-wrapper {
+  max-width: 1200px;
+}
+
 h1.ui.header.main-title {
   padding: 0.5em 0em 1em 0em;
   font-size: 300%;
-}
-
-.ui.main.container > .content-wrapper {
-  max-width: 1200px;
 }
 
 .comments.topic-list {
@@ -21,6 +21,12 @@ h1.ui.header.main-title {
   margin-bottom: 1em;
   border-radius: 4px;
   width: 100%;
+}
+
+.topic-header-row {
+  display: flex;
+  justify-items: flex-end;
+  padding: 1em 0 1em 0;
 }
 
 .topic-header-row > .topic-subject {
@@ -36,18 +42,6 @@ h1.ui.header.main-title {
   color: grey;
 }
 
-.content > a {
-  color: black;
-}
-
-.content > a:hover {
-  color: grey;
-}
-
-.content > .author:hover {
-  color: grey !important;
-}
-
 .topic-subject-input {
   width: 100%;
   font-size: 1.28571429rem;
@@ -59,10 +53,16 @@ h1.ui.header.main-title {
   outline: none;
 }
 
-.topic-header-row {
-  display: flex;
-  justify-items: flex-end;
-  padding: 1em 0 1em 0;
+.content > a {
+  color: black;
+}
+
+.content > a:hover {
+  color: grey;
+}
+
+.content > .author:hover {
+  color: grey !important;
 }
 
 .no-topics-message {
