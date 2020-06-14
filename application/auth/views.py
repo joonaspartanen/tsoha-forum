@@ -11,7 +11,6 @@ bcrypt = Bcrypt(app)
 
 @app.route("/auth/login", methods=["GET"])
 def view_login_form():
-    create_testadmin_if_absent()
     return render_template("auth/login.html", form=UserForm())
 
 
@@ -128,7 +127,7 @@ def view_all_users():
     if not current_user.is_admin:
         return redirect(url_for("topics_index"))
 
-    users = User.query.all()
+    users = User.get_all_users_with_statistics()
 
     return render_template("auth/all_users.html", users=users)
 
@@ -159,16 +158,3 @@ def remove_admin_rights(user_id):
     db.session().commit()
 
     return redirect(url_for("view_all_users"), code=303)
-
-
-def create_testadmin_if_absent():
-    testadmin = User.query.filter_by(username="tsohaadmin").first()
-    if testadmin:
-        return
-
-    pw_hash = bcrypt.generate_password_hash("tsohaadmin").decode("utf-8")
-
-    testadmin = User("tsohaadmin", pw_hash, True)
-
-    db.session().add(testadmin)
-    db.session().commit()
