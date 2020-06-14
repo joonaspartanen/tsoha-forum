@@ -8,7 +8,7 @@ class TopicForm(FlaskForm):
         "Subject", [validators.Length(max=100), validators.DataRequired()], render_kw={"placeholder": "Subject"})
     body = TextAreaField("Message body", [validators.Length(
         max=1000), validators.DataRequired()], render_kw={"placeholder": "Type your message here"})
-    tags = SelectMultipleField('Tags', choices=[], validate_choice=False)
+    tags = SelectMultipleField("Tags", choices=[], validate_choice=False)
 
     class Meta:
         csrf = False
@@ -17,11 +17,11 @@ class TopicForm(FlaskForm):
         tag_names = field.data[0].split(",")
         if (len(field.data[0]) == 0):
             raise ValidationError(
-                'Please provide at least one tag to describe the topic.')
+                "Please provide at least one tag to describe the topic.")
 
         for tag_name in tag_names:
             if len(tag_name) > 20:
-                raise ValidationError('A tag can be only 20 characters long.')
+                raise ValidationError("A tag can be only 20 characters long.")
 
 
 class SearchForm(FlaskForm):
