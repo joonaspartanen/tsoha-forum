@@ -10,7 +10,7 @@ Tämä on repositorio Helsingin yliopiston kurssille [Aineopintojen harjoitusty�
 
 - [Asennusohjeet](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/installation.md)
 
-- [Jatkokehitysideoita]((https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/future_development.md))
+- [Jatkokehitysideoita](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/future_development.md)
 
 ## Yleistä
 
