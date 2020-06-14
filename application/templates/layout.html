@@ -25,18 +25,20 @@
         <a class="item" href="{{ url_for('topics_index') }}">All topics</a>
         <a class="item" href="{{ url_for('view_new_topic_form') }}">Add new topic</a>
         <a class="item" href="{{ url_for('view_search_form') }}">Search topics</a>
-        <a class="item" href="{{ url_for('view_user_page', user_id=current_user.id) }}"
-          >My profile</a
-        >
+        {% if current_user.is_authenticated %}
+        <a class="item" href="{{ url_for('view_user_page', user_id=current_user.id) }}">
+          My profile
+        </a>
+        {% endif %}
         {% if current_user.is_admin %}
-          <a class="item" href="{{ url_for('view_all_users') }}">All users</a>
+        <a class="item" href="{{ url_for('view_all_users') }}">All users</a>
         {% endif %}
         {% if current_user.is_authenticated %}
-          <form method="POST" action="{{ url_for('auth_logout') }}" id="logout-form">
-            <a class="item" onclick="logout()">Log out {{ current_user.username }}</a>
-          </form>
+        <form method="POST" action="{{ url_for('auth_logout') }}" id="logout-form">
+          <a class="item" onclick="logout()">Log out {{ current_user.username }}</a>
+        </form>
         {% else %}
-          <a class="item" href="{{ url_for('view_login_form') }}">Login</a>
+        <a class="item" href="{{ url_for('view_login_form') }}">Login</a>
         {% endif %}
       </div>
       <h1 class="ui header centered teal main-title">Message Forum</h1>
