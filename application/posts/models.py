@@ -3,10 +3,10 @@ from application.utils.helper import TimeFormatter
 from sqlalchemy.sql import text
 
 post_likes = db.Table("post_likes",
-                      db.Column("post_id", db.Integer,
-                                db.ForeignKey("posts.id")),
-                      db.Column("user_id", db.Integer,
-                                db.ForeignKey("accounts.id"))
+                      db.Column("post_id", db.Integer, db.ForeignKey(
+                          "posts.id"), nullable=False, index=True),
+                      db.Column("user_id", db.Integer, db.ForeignKey(
+                          "accounts.id"), nullable=False, index=True)
                       )
 
 
@@ -20,14 +20,14 @@ class Post(db.Model):
 
     body = db.Column(db.String(1000), nullable=False)
 
-    likedByUsers = db.relationship("User", secondary=post_likes)
+    liked_by_users = db.relationship("User", secondary=post_likes)
 
     topic_id = db.Column(db.Integer, db.ForeignKey(
-        "topics.id"), nullable=False)
+        "topics.id"), nullable=False, index=True)
     topic = db.relationship("Topic", back_populates="posts")
 
     author_id = db.Column(db.Integer, db.ForeignKey(
-        "accounts.id"), nullable=False)
+        "accounts.id"), nullable=False, index=True)
     author = db.relationship("User", back_populates="posts")
 
     def __init__(self, body):

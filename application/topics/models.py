@@ -15,7 +15,7 @@ class Topic(db.Model):
     subject = db.Column(db.String(100), nullable=False)
 
     author_id = db.Column(db.Integer, db.ForeignKey(
-        "accounts.id"), nullable=False)
+        "accounts.id"), nullable=False, index=True)
     author = db.relationship("User", back_populates="topics")
 
     posts = db.relationship("Post", back_populates="topic")
