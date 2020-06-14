@@ -2,11 +2,15 @@
 
 Tämä on repositorio Helsingin yliopiston kurssille [Aineopintojen harjoitustyö: tietokantasovellus](https://materiaalit.github.io/tsoha-20/).
 
-- [Arkkitehtuurikuvaus ja tietokantakaavio](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/architecture.md)
+- [Tietokantarakenteen kuvaus](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/db_description.md)
 
-- [Vaatimusmäärittely ja yleisimmät käyttötapaukset](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/requirements.md)
+- [Käyttötapaukset](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/requirements.md)
 
 - [Käyttöohjeet](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/user_instructions.md)
+
+- [Asennusohjeet](https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/installation.md)
+
+- [Jatkokehitysideoita]((https://github.com/joonaspartanen/tsoha-forum/blob/master/documentation/future_development.md))
 
 ## Yleistä
 
@@ -20,35 +24,22 @@ Tarkoituksena on luoda sovellukseen myös admin-käyttäjän rooli: admin-käytt
 
 ## Teknologiat
 
-Sovellus on tehty Pythonin [Flask](https://flask.palletsprojects.com/en/1.1.x/)-kirjastolla. HTML-sivujen generointiin hyödynnetään ainakin [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)-kirjastoa. Ulkoasun tyylittelyyn käytetään [Semantic UI:ta](https://semantic-ui.com/).
+Sovellus on tehty Pythonin [Flask](https://flask.palletsprojects.com/en/1.1.x/)-kirjastolla. HTML-sivujen generoinnissa hyödynnetään [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)-kirjastoa. Ulkoasun tyylittelyyn käytetään [Semantic UI:ta](https://semantic-ui.com/).
 
-Kehityksen alkuvaiheessa sovellus hyödyntää SQLite-tietokannanhallintajärjestelmää.
+Sovellus käyttää paikallisesti tietokannanhallintajärjestelmänä [SQLiteä](https://www.sqlite.org/index.html) ja Herokussa [Postgresia](https://www.heroku.com/postgres).
 
 ## Demo
 
 Sovellukseen voi tutustua myös [Herokussa](https://tsoha-forum-app.herokuapp.com/).
 
-Oma tunnus on hyvin helppo tehdä, mutta myös seuraavaa testitunnusta voi käyttää (jos tietokanta ei ole tyhjentynyt):
+Oma tunnus on helppo tehdä, mutta myös seuraavia testitunnuksia voi käyttää:
+
+Peruskäyttäjä:
 
 - käyttäjätunnus: _tsohauser_
 - salasana: _tsohauser_
 
-Kehitysvaiheessa sovellus luo automaattisesti admin-käyttäjän, joka pystyy mm. muokkaamaan ja poistamaan viestejä:
+Pääkäyttäjä:
 
 - käyttäjätunnus: _tsohaadmin_
 - salasana: _tsohaadmin_
-
-## Asennusohjeet
-
-Kloonaa ensin repositorio koneellesi ja siirry projektikansioon:
-
-```
-git clone https://github.com/joonaspartanen/tsoha-forum.git
-cd tsoha-forum
-```
-
-Asenna sitten riippuvuudet komennolla `pip install -r requirements.txt`.
-
-Voit käynnistää sovelluksen komennolla `python3 run.py`.
-
-Voit nyt käyttää sovellusta osoitteessa `http://localhost:5000/`.
