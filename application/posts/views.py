@@ -72,14 +72,19 @@ def edit_post(post_id, topic_id):
 @login_required
 def delete_post(post_id, topic_id):
     post = Post.query.get(post_id)
+    topic = Topic.query.get(topic_id)
 
-    if post is None:
+    if post is None or Topic is None:
         return redirect(url_for("view_topic", topic_id=topic_id))
 
     if UserService.user_not_admin_nor_editing_own_content(post.author_id):
         return redirect(url_for("view_topic", topic_id=topic_id))
 
     db.session().delete(post)
+
+    if not topic.posts:
+        db.session().delete(topic)
+
     db.session.commit()
 
     resp = jsonify(success=True)
