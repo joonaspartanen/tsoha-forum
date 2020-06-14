@@ -4,7 +4,7 @@
 
 Sovelluksen tietokannan suunniteltua rakennetta kuvaa seuraava kaavio (päivitetty viikolla 4):
 
-![Tietokantakaavio](https://raw.githubusercontent.com/joonaspartanen/tsoha-forum/master/documentation/images/db_structure.png)
+![Tietokantakaavio](https://raw.githubusercontent.com/joonaspartanen/tsoha-forum/master/documentation/images/db_structure_final.png)
 
 Sovelluksen keskeisiä käsitteitä ovat siis _User_ (käyttäjä), _Topic_ (viestiketju), _Post_ (viesti) ja _Tag_ (aihetunniste).
 
