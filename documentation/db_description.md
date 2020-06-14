@@ -2,7 +2,7 @@
 
 ## Tietokantakaavio
 
-Sovelluksen tietokannan suunniteltua rakennetta kuvaa seuraava kaavio (päivitetty viikolla 4):
+Sovelluksen tietokannan suunniteltua rakennetta kuvaa seuraava kaavio:
 
 ![Tietokantakaavio](https://raw.githubusercontent.com/joonaspartanen/tsoha-forum/master/documentation/images/db_structure_final.png)
 
