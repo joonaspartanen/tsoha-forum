@@ -21,9 +21,9 @@ def topics_index():
     next_url = None
     prev_url = None
     if topics.has_next:
-        next_url = url_for('topics_index', page=topics.next_num)
+        next_url = url_for("topics_index", page=topics.next_num)
     if topics.has_prev:
-        prev_url = url_for('topics_index', page=topics.prev_num)
+        prev_url = url_for("topics_index", page=topics.prev_num)
 
     most_liked_posts = Post.find_most_liked_posts_today()
     return render_template("topics/all_topics.html", topics=topics.items, most_liked_posts=most_liked_posts, next_url=next_url, prev_url=prev_url)
@@ -32,7 +32,8 @@ def topics_index():
 @app.route("/topics/<topic_id>", methods=["GET"])
 @login_required
 def view_topic(topic_id):
-    topic = Topic.query.get(topic_id)
+    topic = Topic.query.options(joinedload(Topic.posts), joinedload(
+        Topic.tags), joinedload(Topic.author)).get(topic_id)
 
     if topic is None:
         return redirect(url_for("topics_index"))
