@@ -17,6 +17,12 @@ cd tsoha-forum
 
 Asenna sitten riippuvuudet komennolla `pip install -r requirements.txt`.
 
+Kehitysympäristössä kannattaa myös asettaa Flaskin FLASK_ENV-ympäristömuuttujan arvoksi `development`, jolloin sovelluksen debug-tila aktivoituu:
+
+```bash
+export FLASK_ENV=development
+```
+
 Voit käynnistää sovelluksen komennolla `python3 run.py`.
 
 Voit nyt käyttää sovellusta osoitteessa `http://localhost:5000/`.
@@ -37,13 +43,13 @@ Yhdistä sitten luomasi sovellus versionhallintaasi
 git remote add heroku https://git.heroku.com/<sovelluksen-nimi>.git
 ```
 
-Aseta vielä tarvittava ympäristömuuttuja
+Aseta vielä seuraava ympäristömuuttuja, jotta sovellus osaa käyttää oikeaa tietokantaa
 
 ```bash
 heroku config:set HEROKU=1
 ```
 
-ja ota Postgres-tietokanta käyttöön
+ja ota sitten Postgres-tietokanta käyttöön komennolla
 
 ```bash
 heroku addons:add heroku-postgresql:hobby-dev
@@ -61,4 +67,4 @@ git push heroku master
 
 Peruskäyttäjiä on helppo luoda sovelluksen käyttöliittymän kautta.
 
-Ensimmäinen admin-käyttäjä täytyy kuitenkin luoda suoraan koodista. Sovelluksen _UserService_-luokassa on apumetodi create_testadmin_if_absent, jota voi käyttää hyväksi.
+Ensimmäinen admin-käyttäjä täytyy kuitenkin luoda suoraan koodista. Sovelluksen _UserService_-luokassa on apumetodi create_testadmin_if_absent, joka luo "tsohaadmin"-nimisen admin-käyttäjän parametrina annetulla salasanalla. Ole kuitenkin tarkkana, ettet vie salasanoja versionhallintaan.
