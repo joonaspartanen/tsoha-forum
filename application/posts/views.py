@@ -91,8 +91,8 @@ def delete_post(post_id, topic_id):
 def like_post(post_id, topic_id):
     post = Post.query.get(post_id)
 
-    if current_user not in post.likedByUsers:
-        post.likedByUsers.append(current_user)
+    if current_user not in post.liked_by_users:
+        post.liked_by_users.append(current_user)
         db.session().commit()
 
         resp = jsonify(success=True)
@@ -107,8 +107,8 @@ def like_post(post_id, topic_id):
 def unlike_post(post_id, topic_id):
     post = Post.query.get(post_id)
 
-    if current_user in post.likedByUsers:
-        post.likedByUsers.remove(current_user)
+    if current_user in post.liked_by_users:
+        post.liked_by_users.remove(current_user)
         db.session().commit()
 
         resp = jsonify(success=True)
