@@ -16,11 +16,11 @@ Tämä on repositorio Helsingin yliopiston kurssille [Aineopintojen harjoitusty�
 
 Harjoitustyön aiheena on keskustelufoorumi. Rekisteröityneet käyttäjät voivat luoda foorumille viestiketjuja, joihin he voivat lisätä viestejä. Käyttäjät voivat tykätä viesteistä.
 
-Viestiketjuja on mahdollista luokitella käyttämällä aihetunnisteita. Foorumin hakutoiminto mahdollistaa viestiketjujen hakemisen mm. aihetunnisteiden ja ketjujen otsikoiden perusteella.
+Viestiketjuja on mahdollista luokitella käyttämällä aihetunnisteita. Foorumin hakutoiminto mahdollistaa viestiketjujen hakemisen ketjujen otsikoiden ja niiden lisänneiden käyttäjien perusteella.
 
-Hakutoiminnon lisäksi monimutkaisempia yhteenvetokyselyjä on tarkoitus hyödyntää käyttäjän omalla sivulla, jossa voitaisiin näyttää esim. tilastotietoja.
+Hakutoiminnon lisäksi monimutkaisempia yhteenvetokyselyjä hyödynnetään käyttäjän omalla sivulla, jossa näytetään tilastotietoja käyttäjän toiminnasta foorumilla (viestien, ketjujen ja saatujen tykkäysten määrä).
 
-Tarkoituksena on luoda sovellukseen myös admin-käyttäjän rooli: admin-käyttäjä voi myös poistaa foorumilta viestejä ja viestiketjuja.
+Sovelluksessa on myös admin-käyttäjän rooli: admin-käyttäjä voi poistaa foorumilta kenen tahansa lisäämiä viestejä ja viestiketjuja.
 
 ## Teknologiat
 
