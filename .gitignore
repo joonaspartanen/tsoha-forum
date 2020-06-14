@@ -143,5 +143,5 @@ cython_debug/
 # VS Code generated folder
 .vscode/
 
-# Textual representation of ER diagram
-erdiagram.txt
+# Textual representation of database diagram
+db_structure.txt
