@@ -1,16 +1,15 @@
 from application import db
+from application.models import Base
 from application.tags.models import tag_topics
 from application.utils.helper import TimeFormatter
 from sqlalchemy.sql import text
 
 
-class Topic(db.Model):
+class Topic(Base):
     __tablename__ = "topics"
 
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-        onupdate=db.func.current_timestamp())
+                              onupdate=db.func.current_timestamp())
 
     subject = db.Column(db.String(100), nullable=False)
 

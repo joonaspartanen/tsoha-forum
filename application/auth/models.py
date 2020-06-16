@@ -1,17 +1,16 @@
 from application import db
+from application.models import Base
 from application.utils.helper import TimeFormatter
 
 from sqlalchemy.sql import text
 
 
-class User(db.Model):
+class User(Base):
 
     __tablename__ = "accounts"
 
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-
-    username = db.Column(db.String(100), nullable=False, index=True, unique=True)
+    username = db.Column(db.String(100), nullable=False,
+                         index=True, unique=True)
     pw_hash = db.Column(db.String(144), nullable=False)
 
     description = db.Column(db.String(1000), nullable=True)

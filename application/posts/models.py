@@ -1,4 +1,5 @@
 from application import db
+from application.models import Base
 from application.utils.helper import TimeFormatter
 from sqlalchemy.sql import text
 
@@ -10,11 +11,9 @@ post_likes = db.Table("post_likes",
                       )
 
 
-class Post(db.Model):
+class Post(Base):
     __tablename__ = "posts"
 
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
                               onupdate=db.func.current_timestamp())
 
