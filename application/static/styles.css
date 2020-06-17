@@ -6,6 +6,10 @@
   max-width: 1200px;
 }
 
+.ui.inverted.teal.menu a {
+  color: #ffffff;
+}
+
 h1.ui.header.main-title {
   padding: 0.5em 0em 1em 0em;
   font-size: 300%;
@@ -100,4 +104,13 @@ h1.ui.header.main-title {
 
 .button-group {
   display: flex;
+}
+
+.content.confirmation-message {
+  text-align: center;
+}
+
+.actions.modal-buttons {
+  display: flex;
+  justify-content: center;
 }
