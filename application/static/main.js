@@ -35,6 +35,16 @@ const handleLike = (postId, topicId) => {
   }
 }
 
+const showDeleteModal = (topicId) => {
+  $('.ui.basic.modal.confirm-delete-modal')
+    .modal({
+      onApprove: () => {
+        handleDeleteTopic(topicId)
+      },
+    })
+    .modal('show')
+}
+
 const handleDeleteTopic = (topicId) => {
   fetch(`/topics/${topicId}`, { method: 'DELETE' }).then((response) => {
     if (response.ok) {
@@ -48,6 +58,10 @@ const handleEditTopic = (topicId) => {
   const topicWrapper = document.querySelector(`#topic-wrapper-${topicId}`)
   const topicSubject = topicWrapper.getElementsByTagName('h3')[0]
   const topicSubjectText = topicSubject.getElementsByTagName('a')[0]
+
+  const editButton = document.querySelector(`#edit-button-${topicId}`)
+  editButton.style.display = 'none'
+
   const input = document.createElement('input')
   input.classList.add('topic-subject-input')
   input.minLength = 1
@@ -70,6 +84,7 @@ const handleEditTopic = (topicId) => {
         if (response.ok) {
           topicSubjectText.innerHTML = newSubject
           input.replaceWith(topicSubject)
+          editButton.style.display = 'block'
         }
       })
     }
