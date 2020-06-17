@@ -1,6 +1,6 @@
-<div class="comment post-wrapper" id="post-{{ post.id }}">
+<article class="comment post-wrapper" id="post-{{ post.id }}">
   <a class="avatar">
-    <img src="../../static/images/avatar.png" alt="User avatar" />
+    <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="User avatar" />
   </a>
   <div class="content">
     <a class="author" href="{{ url_for('view_user_page', user_id=post.author.id) }}"
@@ -44,4 +44,4 @@
     </div>
     {% endif %}
   </div>
-</div>
+</article>

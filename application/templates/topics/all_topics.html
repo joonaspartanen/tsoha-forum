@@ -7,16 +7,16 @@
       <h2 class="ui header">Latest topics</h2>
       {% include "topics/_topics_list.html" %}
     </div>
-    <div class="four wide column">
-      {% if most_liked_posts %}
+    {% if most_liked_posts %}
+    <aside class="four wide column">
       <h2>Most liked today</h2>
       <div class="ui small comments topic-list">
         {% for post in most_liked_posts %}
         {% include "posts/_post.html"%}
         {% endfor %}
       </div>
-      {% endif %}
-    </div>
+    </aside>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
