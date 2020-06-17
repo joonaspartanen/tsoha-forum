@@ -1,21 +1,23 @@
 <div class="ui large comments topic-list">
-    {% if topics|length == 0 %}
-    <div class="ui segment no-topics-message">
-      There are no topics. Go ahead and <a href="{{ url_for('view_new_topic_form') }}">add one</a>!
-    </div>
-
-    {% else %}
-    {% for topic in topics %}
-    {% include "topics/_topic.html" %}
-    {% endfor %}
-
-    {% endif %}
+  {% if topics|length == 0 %}
+  <div class="ui segment no-topics-message">
+    There are no topics. Go ahead and <a href="{{ url_for('view_new_topic_form') }}">add one</a>!
   </div>
-  <div class="topic-navigation">
-    {% if next_url %}
-    <a href="{{ next_url }}"><i class="teal arrow alternate circle left icon link big"></i></a>
-    {% endif %}
-    {% if prev_url %}
-    <a href="{{ prev_url }}"><i class="teal arrow alternate circle right icon link big"></i></a>
-    {% endif %}
-  </div>
+
+  {% else %}
+  
+  {% for topic in topics %}
+  {% include "topics/_topic.html" %}
+  {% endfor %}
+  
+  {% endif %}
+</div>
+<div class="topic-navigation">
+  {% if next_url %}
+  <a href="{{ next_url }}"><i class="teal arrow alternate circle left icon link big"></i></a>
+  {% endif %} {% if prev_url %}
+  <a href="{{ prev_url }}"><i class="teal arrow alternate circle right icon link big"></i></a>
+  {% endif %}
+</div>
+
+{% include "topics/_confirm_delete_modal.html" %}
