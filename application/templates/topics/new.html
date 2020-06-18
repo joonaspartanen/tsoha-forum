@@ -2,13 +2,14 @@
 
 {% block body %}
 
-<h2>Add new topic</h2>
+<h1>Add new topic</h1>
 <form
   class="ui form"
   method="POST"
   action="{{ url_for('create_topic') }}"
   onkeydown="return event.key != 'Enter'"
 >
+  {{ form.csrf_token }}
   <div class="field">
     {{ form.subject.label }}
     {{ form.subject }}

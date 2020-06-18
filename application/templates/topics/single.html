@@ -2,11 +2,11 @@
 
 {% block body %}
 <div class="content-wrapper">
-  <h2 class="ui dividing header">{{ topic.subject }}
+  <h1 class="ui dividing header">{{ topic.subject }}
     {% for tag in topic.tags %}
     <span class="ui small label">{{ tag.name }}</span>
     {% endfor %}
-  </h2>
+  </h1>
   <div class="ui large comments topic-list">
     {% for post in topic.posts %}
     {% include "posts/_post.html" %}
@@ -17,15 +17,14 @@
       method="POST"
       action="{{ url_for('create_post', topic_id=topic.id) }}"
     >
+      {{ form.csrf_token }}
       <div class="field">
         {{ form.body }}
-        
         {% for error in form.body.errors %}
         <div class="ui pointing red basic label">
           {{ error }}
         </div>
         {% endfor %}
-      
       </div>
       <button class="ui teal submit button" type="submit">
         <i class="pencil icon"></i>

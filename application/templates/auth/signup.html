@@ -11,6 +11,7 @@
 
 <div class="ui segment">
   <form class="ui fluid form" method="POST" action="{{ url_for('create_user') }}">
+    {{ form.csrf_token }}
     <div class="field">
       <div class="ui left icon input">
         {{ form.username(autofocus=true) }}

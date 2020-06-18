@@ -2,13 +2,14 @@
 
 {% block body %}
 
-<h2 class="ui header">Edit post</h2>
+<h1>Edit post</h1>
 
 <form
   class="ui form"
   method="POST"
   action="{{ url_for('edit_post', post_id=post.id, topic_id=post.topic_id) }}"
 >
+  {{ form.csrf_token }}
   <div class="field">
     {{ form.body.label }}
     

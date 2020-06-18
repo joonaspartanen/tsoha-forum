@@ -2,7 +2,9 @@
 
 {% block body %}
 
+<h1>Edit profile</h1>
 <form class="ui form" method="POST" action="{{ url_for('edit_profile', user_id=current_user.id) }}">
+  {{ form.csrf_token }}
   <div class="field">
     <label>
       {{ form.description.label }}

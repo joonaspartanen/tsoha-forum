@@ -1,8 +1,9 @@
 {% extends "layout.html" %} {% block body %}
 
-<h2>Search topics</h2>
+<h1>Search topics</h1>
 
 <form class="ui form" method="POST" action="{{ url_for('search_topics') }}">
+  {{ form.csrf_token }}
   <div class="field">
     {{ form.subject.label }}
     {{ form.subject }}
