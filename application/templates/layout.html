@@ -24,6 +24,7 @@
   <body>
     <div class="page-container">
       <nav class="ui inverted teal menu">
+        <img class="item logo" src="{{ url_for('static', filename='images/tsoha_logo.png') }}" alt="TSOHA Forum logo"></img>
         <a class="item" href="{{ url_for('topics_index') }}">All topics</a>
         <a class="item" href="{{ url_for('view_new_topic_form') }}">Add new topic</a>
         <a class="item" href="{{ url_for('view_search_form') }}">Search topics</a>
@@ -37,13 +38,12 @@
         {% endif %}
         {% if current_user.is_authenticated %}
         <form method="POST" action="{{ url_for('auth_logout') }}" id="logout-form">
-          <a class="item" onclick="logout()">Log out {{ current_user.username }}</a>
         </form>
+        <a class="item" onclick="logout()">Log out {{ current_user.username }}</a>
         {% else %}
         <a class="item" href="{{ url_for('view_login_form') }}">Login</a>
         {% endif %}
       </nav>
-      <h1 class="ui header centered teal main-title">Message Forum</h1>
       <div class="ui main container">
         {% block body %}
         {% endblock %}
