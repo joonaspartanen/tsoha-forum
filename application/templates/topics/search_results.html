@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block body %}
 <div class="content-wrapper">
-  <h2 class="ui header">Search results</h2>
+  <h1>Search results</h1>
   {% if topics|length == 0 %}
   <div>No results found. <a href="{{url_for('view_search_form')}}">Search again.</a></div>
   {% else %}
