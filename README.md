@@ -22,15 +22,11 @@ Hakutoiminnon lisäksi monimutkaisempia yhteenvetokyselyjä hyödynnetään käy
 
 Sovelluksessa on myös admin-käyttäjän rooli: admin-käyttäjä voi poistaa foorumilta kenen tahansa lisäämiä viestejä ja viestiketjuja.
 
-## Teknologiat
-
-Sovellus on tehty Pythonin [Flask](https://flask.palletsprojects.com/en/1.1.x/)-kirjastolla. HTML-sivujen generoinnissa hyödynnetään [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)-kirjastoa. Ulkoasun tyylittelyyn käytetään [Semantic UI:ta](https://semantic-ui.com/).
-
-Sovellus käyttää paikallisesti tietokannanhallintajärjestelmänä [SQLiteä](https://www.sqlite.org/index.html) ja Herokussa [Postgresia](https://www.heroku.com/postgres).
-
 ## Demo
 
 Sovellukseen voi tutustua myös [Herokussa](https://tsoha-forum-app.herokuapp.com/).
+
+![Kuvakaappaus sovelluksen etusivusta](https://raw.githubusercontent.com/joonaspartanen/tsoha-forum/master/documentation/images/topics_list.png)
 
 Oma tunnus on helppo tehdä, mutta myös seuraavia testitunnuksia voi käyttää:
 
@@ -43,3 +39,9 @@ Pääkäyttäjä:
 
 - käyttäjätunnus: _tsohaadmin_
 - salasana: _tsohaadmin_
+
+## Teknologiat
+
+Sovellus on tehty Pythonin [Flask](https://flask.palletsprojects.com/en/1.1.x/)-kirjastolla. HTML-sivujen generoinnissa hyödynnetään [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)-kirjastoa. Ulkoasun tyylittelyyn käytetään [Semantic UI:ta](https://semantic-ui.com/).
+
+Sovellus käyttää paikallisesti tietokannanhallintajärjestelmänä [SQLiteä](https://www.sqlite.org/index.html) ja Herokussa [Postgresia](https://www.heroku.com/postgres).
