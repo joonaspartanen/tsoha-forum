@@ -2,17 +2,23 @@
   min-height: 100vh;
 }
 
+.ui.main.container {
+  padding-top: 5em;
+}
+
 .ui.main.container > .content-wrapper {
   max-width: 1200px;
 }
 
-.ui.inverted.teal.menu a {
-  color: #ffffff;
+.logo {
+  max-width: 140px;
+  max-height: 45px;
+  width: auto;
+  height: auto;
 }
 
-h1.ui.header.main-title {
-  padding: 0.5em 0em 1em 0em;
-  font-size: 300%;
+.ui.inverted.teal.menu a {
+  color: #ffffff;
 }
 
 .comments.topic-list {
